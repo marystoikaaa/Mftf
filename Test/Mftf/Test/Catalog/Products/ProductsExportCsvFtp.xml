@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="ProductsExportCsvFtp">
+        <annotations>
+            <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
+            <features value="improveExport"/>
+            <stories value="Export Products"/>
+            <title value="Export Products Csv Ftp"/>
+            <description value="Export products successful, products're were exported"/>
+            <severity value="CRITICAL"/>
+            <group value="improveExport"/>
+        </annotations>
+        <before>
+        <amOnPage url="admin" stepKey="openAdminPanelPage" />
+            <fillField selector="#username" userInput="admin" stepKey="fillLoginField" />
+            <fillField selector="#login" userInput="magento2" stepKey="fillPasswordField" />
+            <click selector="#login-form .action-login" stepKey="clickLoginButton" />
+        </before>
+        <after>
+        
+        </after>
+
+       <!-- Go to Export page -->
+        <click selector="#menu-magento-backend-system" stepKey="openSystem" />
+        <click selector=".item-export-job" stepKey="openExportPage" />
+
+        <!-- Click "Add Job" button -->
+        <click selector="#add" stepKey="clickAddExportJobButton" />
+        <waitForPageLoad stepKey="waitForNewExportPageOpened" />
+
+        <!-- Specify general section -->
+        <click selector=".general_is_active label" stepKey="clickGeneralIsActive"/>
+        <seeElement selector=".general_title" stepKey="seeGeneralIsTitle"/>
+        <fillField selector=".general_title input" userInput="Product - Export - csv - ftp " stepKey="fillGeneralTitle"/>
+        
+        <!-- Specify Export Settings section -->
+        <seeElement selector=".settings_entity" stepKey="seeSettingsEntity"/>
+        <selectOption userInput="catalog_product" selector=".settings_entity select" stepKey="selectSettingsEntity"/>
+
+        <!-- Specify Export Behavior section -->
+        <selectOption userInput="csv" selector=".behavior_behavior_field_file_format select" stepKey="selectFileType"/>
+
+        <!-- specify Export Source section -->
+        <selectOption userInput="ftp" selector=".source_export_source_entity select" stepKey="selectSource"/>
+        <fillField selector=".export_source_ftp_file_path input" userInput="/files/import_add_update_sample_data.xlsx"  stepKey="fillFtpFilePath"/>
+        <fillField selector=".export_source_ftp_host input" userInput="***"  stepKey="fillFtpHost"/>
+        <fillField selector=".export_source_ftp_port input" userInput="***"  stepKey="fillFtpPort"/>
+        <fillField selector=".export_source_ftp_user input" userInput="***"  stepKey="fillFtpUser"/>
+        <fillField selector=".export_source_ftp_password input" userInput="***"  stepKey="fillFtpPassword"/>
+
+        <!-- Check ftp connection -->
+        <click selector=".source_check_button" stepKey="clickValidateFtp"/>
+        <waitForText userInput="Success! Your connection is ready!" selector=".fieldset_source" stepKey="seeValidateText"/>
+
+        <!-- Save and run process --> 
+        <click selector="#save_and_run" stepKey="clickSaveAndRun"/>
+        <waitForPageLoad stepKey="waitForSaveAndRunPageOpened"/>
+        <click selector=".run" stepKey="clickRun"/>
+
+        <!-- Check Export results -->
+        <waitForText userInput="Entity catalog_product" selector="#debug-run" stepKey="waitForExportEntity"/>
+        <waitForText userInput="The export is finished." selector="#debug-run" stepKey="waitForExportSuccessful"/>
+        <dontSee userInput="There is no data for the export." selector="#debug-run" stepKey="dontSeeNoData"/>
+        <dontSee userInput="Please provide filter data." selector="#debug-run" stepKey="dontSeeEmpty"/>
+        <dontSee userInput="The header column names are already set." selector="#debug-run" stepKey="dontSeeNameAlreadySet"/>
+        <dontSee userInput="Exception" selector="#debug-run" stepKey="dontSeeException"/> 
+
+    </test>
+</tests>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="ProductsImportAddUpdateXmlFile">
+        <annotations>
+            <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
+            <features value="improveImport"/>
+            <stories value="Products Import Add Update Xml File"/>
+            <title value="Products Import Add Update Xml File"/>
+            <description value="Import products successful, products're were imported, config products have child simple products, 
+            bundle products have option with simple products"/>
+            <severity value="CRITICAL"/>
+            <group value="improveImport"/>
+        </annotations>
+        <before>
+        <amOnPage url="admin" stepKey="openAdminPanelPage" />
+            <fillField selector="#username" userInput="admin" stepKey="fillLoginField" />
+            <fillField selector="#login" userInput="magento2" stepKey="fillPasswordField" />
+            <click selector="#login-form .action-login" stepKey="clickLoginButton" />
+        </before>
+        <after>
+        
+        </after>
+
+        <!-- Go to Import page -->
+        <click selector="#menu-magento-backend-system" stepKey="openSystem" />
+        <click selector=".item-import-job" stepKey="openImportPage" />
+
+        <!-- Click "Add Job" button -->
+        <click selector="#add" stepKey="clickAddImportJobButton" />
+        <waitForPageLoad stepKey="waitForNewImportPageOpened" />
+
+        <!-- Specify general section -->
+        <click selector=".general_is_active label" stepKey="clickGeneralIsActive"/>
+        <seeElement selector=".general_title" stepKey="seeGeneralIsTitle"/>
+        <fillField selector=".general_title input" userInput="Product Import - add update - xml - file" stepKey="fillGeneralTitle"/>
+        <click selector=".general_reindex label" stepKey="enableReindex"/>
+        
+        <!-- Specify Import Settings section -->
+        <click selector=".admin__collapsible-block-wrapper" stepKey="openFieldSettings"/>
+        <seeElement selector=".settings_entity" stepKey="seeSettingsEntity"/>
+        <selectOption userInput="catalog_product" selector=".settings_entity select" stepKey="selectSettingsEntity"/>
+
+        <!-- Specify Import Behavior section -->
+        <selectOption userInput="append" selector=".behavior_behavior select" stepKey="selectBehavior"/>
+
+        <!-- Specify Import Source section -->
+        <selectOption userInput="xml" selector=".type_file select" stepKey="selectFileType"/>
+        <selectOption userInput="file" selector=".import_source select" stepKey="selectSource"/>
+        <fillField selector=".file_file_path input" userInput="pub/media/importexport/test/products_all_types.xml"  stepKey="fillGoogleFilePath"/>
+
+        <!-- Validate Import file -->
+        <click selector=".source_check_button" stepKey="clickValidateImportFile"/>
+        <waitForElement selector=".fieldset_source" stepKey="waitForValidateResult"/>
+        <see userInput="File validated successfully." selector=".fieldset_source" stepKey="seeValidateText"/>
+
+        <!-- Save and run process --> 
+        <click selector="#save_and_run" stepKey="clickSaveAndRun"/>
+        <waitForPageLoad stepKey="waitForSaveAndRunPageOpened"/>
+        <click selector=".run" stepKey="clickRun"/>
+
+        <!-- Check Import results -->
+        <waitForText userInput="Entity catalog_product" selector="#debug-run" stepKey="waitForImportEntity"/>
+        <waitForText userInput="The import was successful" selector="#debug-run" stepKey="waitForImportSuccessful"/>
+        <waitForText userInput="REINDEX completed" selector="#debug-run" stepKey="waitForReindexComplited"/>
+        <waitForText userInput="invalid rows: 0" selector="#debug-run" stepKey="waitForInvalidRowsZero"/>
+        <dontSee userInput="This file is empty" selector="#debug-run" stepKey="dontSeeEmpty"/>
+        <dontSee userInput="Data validation failed" selector="#debug-run" stepKey="dontSeeValidationFailed"/>
+        <dontSee userInput="Exception" selector="#debug-run" stepKey="dontSeeException"/> 
+
+    </test>
+</tests>

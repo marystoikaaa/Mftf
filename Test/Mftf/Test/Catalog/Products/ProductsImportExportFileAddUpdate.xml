@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="ProductsImportExportFileAddUpdate">
+        <annotations>
+            <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
+            <features value="improveImport"/>
+            <stories value="Products Import Export File AddUpdate"/>
+            <title value="Products Import Export File AddUpdate"/>
+            <description value="Import products successful, products're were added"/>
+            <severity value="CRITICAL"/>
+            <group value="improveImport"/>
+        </annotations>
+        <before>
+            <amOnPage url="admin" stepKey="openAdminPanelPage" />
+            <fillField selector="#username" userInput="admin" stepKey="fillLoginField" />
+            <fillField selector="#login" userInput="magento2" stepKey="fillPasswordField" />
+            <click selector="#login-form .action-login" stepKey="clickLoginButton" />
+        </before>
+        <after>
+
+        </after>
+
+        <!-- Go to Import page -->
+        <click selector="#menu-magento-backend-system" stepKey="openSystem" />
+        <click selector=".item-import-job" stepKey="openImportPage" />
+
+        <!-- Click "Add Job" button -->
+        <click selector="#add" stepKey="clickAddImportJobButton" />
+        <waitForPageLoad stepKey="waitForNewImportPageOpened" />
+
+        <!-- Specify general section -->
+        <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive"/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Product Import - add update - xml - file" stepKey="fillGeneralTitle"/>
+        <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
+
+        <!-- Specify Import Settings section -->
+        <click selector="{{AdminImportSettingsSection.fieldSettings}}" stepKey="openFieldSettings"/>
+        <selectOption userInput="catalog_product" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+
+        <!-- Specify Import Behavior section -->
+        <selectOption userInput="append" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
+
+        <!-- Specify Import Source section -->
+        <selectOption userInput="csv" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
+        <selectOption userInput="ftp" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
+        <fillField selector="{{AdminImportSourceSection.ftpFilePath}}" userInput="/files/import_add_update_sample_data.csv" stepKey="fillFtpFilePath"/>
+        <fillField selector="{{AdminImportSourceSection.ftpHost}}" userInput="***" stepKey="fillFtpHost"/>
+        <fillField selector="{{AdminImportSourceSection.ftpPort}}" userInput="***" stepKey="fillFtpPort"/>
+        <fillField selector="{{AdminImportSourceSection.ftpUser}}" userInput="***" stepKey="fillFtpUser"/>
+        <fillField selector="{{AdminImportSourceSection.ftpPassword}}" userInput="***" stepKey="fillFtpPassword"/>
+
+        <!-- Validate Import file -->
+        <click selector="{{AdminImportValidateSection.validateButton}}" stepKey="clickValidateImportFile"/>
+        <waitForText userInput="File validated successfully." selector="{{AdminImportValidateSection.validateResult}}" stepKey="waitValidateText"/>
+
+        <!-- Save and run process -->
+        <click selector="{{AdminImportSaveAndRun.saveAndRun}}" stepKey="clickSaveAndRun"/>
+        <waitForPageLoad stepKey="waitForSaveAndRunPageOpened"/>
+        <click selector="{{AdminImportSaveAndRun.runButton}}" stepKey="clickRun"/>
+
+        <!-- Check Import results -->
+        <waitForText userInput="Entity catalog_product" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
+        <waitForText userInput="The import was successful" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportSuccessful"/>
+        <waitForText userInput="REINDEX completed" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForReindexComplited"/>
+        <waitForText userInput="invalid rows: 0" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForInvalidRowsZero"/>
+        <dontSee userInput="This file is empty" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="dontSeeEmpty"/>
+        <dontSee userInput="Data validation failed" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="dontSeeValidationFailed"/>
+        <dontSee userInput="Exception" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="dontSeeException"/>
+
+    </test>
+</tests>

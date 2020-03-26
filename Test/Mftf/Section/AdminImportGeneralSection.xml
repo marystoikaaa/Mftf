@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminImportGeneralSection">
+        <element name="generalIsActive" type="button" selector=".general_is_active label" timeout="5" />
+        <element name="generalTitle" type="input" selector=".general_title input"  timeout="5"/>
+        <element name="generalReindex" type="button" selector=".general_reindex label"  timeout="5"/>
+    </section>
+    <section name="AdminImportSettingsSection">
+        <element name="fieldSettings" type="button" selector=".admin__collapsible-block-wrapper" timeout="5" />
+        <element name="settingsEntity" type="select" selector=".settings_entity select"  timeout="5"/>
+    </section>
+    <section name="AdminImportBehaviorSection">
+        <element name="behaviorBehavior" type="select" selector=".behavior_behavior select" timeout="5" />
+    </section>
+    <section name="AdminImportSourceSection">
+        <element name="typeFile" type="select" selector=".type_file select" timeout="5" />
+        <element name="importSource" type="select" selector=".import_source select"  timeout="5"/>
+        <element name="ftpFilePath" type="input" selector=".ftp_file_path input"  timeout="5"/>
+        <element name="ftpHost" type="input" selector=".ftp_host input" timeout="5" />
+        <element name="ftpPort" type="input" selector=".ftp_port input"  timeout="5"/>
+        <element name="ftpUser" type="input" selector=".ftp_user input"  timeout="5"/>
+        <element name="ftpPassword" type="input" selector=".ftp_password input"  timeout="5"/>
+    </section>
+    <section name="AdminImportValidateSection">
+        <element name="validateButton" type="button" selector=".source_check_button" timeout="5" />
+        <element name="validateResult" type="text" selector=".fieldset_source"  timeout="5"/>
+    </section>
+    <section name="AdminImportSaveAndRun">
+        <element name="saveAndRun" type="button" selector="#save_and_run" />
+        <element name="runButton" type="button" selector=".run" />
+        <element name="importResult" type="button" selector="#debug-run" />
+    </section>
+
+</sections>

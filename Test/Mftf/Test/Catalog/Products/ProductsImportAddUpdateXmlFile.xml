@@ -12,8 +12,8 @@
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveImport"/>
-            <stories value="Products Import Add Update Xml File"/>
-            <title value="Products Import Add Update Xml File"/>
+            <stories value="Import Products"/>
+            <title value="Import Products Successful"/>
             <description value="Import products successful, products're were imported, config products have child simple products, 
             bundle products have option with simple products"/>
             <severity value="CRITICAL"/>
@@ -29,7 +29,7 @@
         
         </after>
 
-        <!-- Go to Import page -->
+       <!-- Go to Import page -->
         <click selector="#menu-magento-backend-system" stepKey="openSystem" />
         <click selector=".item-import-job" stepKey="openImportPage" />
 
@@ -42,7 +42,7 @@
         <seeElement selector=".general_title" stepKey="seeGeneralIsTitle"/>
         <fillField selector=".general_title input" userInput="Product Import - add update - xml - file" stepKey="fillGeneralTitle"/>
         <click selector=".general_reindex label" stepKey="enableReindex"/>
-        
+
         <!-- Specify Import Settings section -->
         <click selector=".admin__collapsible-block-wrapper" stepKey="openFieldSettings"/>
         <seeElement selector=".settings_entity" stepKey="seeSettingsEntity"/>
@@ -75,5 +75,22 @@
         <dontSee userInput="Data validation failed" selector="#debug-run" stepKey="dontSeeValidationFailed"/>
         <dontSee userInput="Exception" selector="#debug-run" stepKey="dontSeeException"/> 
 
+        <!-- Check that products were added -->
+        <click selector=".import_job_form_import_job_form_run_import button" stepKey="closeRunConsole" />
+        <waitForPageLoad stepKey="waitForConsoleClosed" />
+        <click selector="#menu-magento-catalog-catalog" stepKey="clickCatalogMenu" />
+        <click selector=".item-catalog-products" stepKey="openCatalogProductsPage" />
+        <waitForPageLoad stepKey="waitForCatalogPageOpened" />
+        <click selector=".data-grid-filters-actions-wrap button" stepKey="clickOnFilter"/>
+        <fillField selector="input[name='sku']" userInput="tst" stepKey="fillFieldFilterSku"/>
+        <click selector="button.action-secondary" stepKey="clickApplyFilters"/>
+        <see userInput="18 records found" selector=".admin__data-grid-outer-wrap" stepKey="seeTitle"/>
+
+        <!-- Check that configurable product has a child's products -->
+
+        <!--<see userInput="Test Configurable product" selector=".admin__data-grid-outer-wrap" stepKey="SeeConfigProduct"/>-->
+        <!--<amOnPage url="{{AdminImportProductEditPage.url('27')}}" stepKey="goToProductEditPage"/>-->
+        <!--<waitForPageLoad stepKey="waitForProductPageLoad"/>-->
+        <!--<amOnPage url="{{AdminProductEditPage.url(productName)}}" stepKey="goToTstConfig"/>-->
     </test>
 </tests>

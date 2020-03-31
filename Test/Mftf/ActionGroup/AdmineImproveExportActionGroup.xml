@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <actionGroup name="AdminImproveExportActionGroup">
+        <annotations>
+            <description>Create new export job</description>
+        </annotations>
+        <arguments>
+            <argument name="exportProcess"/>
+        </arguments>
+        <!-- Go to Export page -->
+        <click selector="#menu-magento-backend-system" stepKey="openSystem" />
+        <click selector=".item-export-job" stepKey="openExportPage" />
+        <!-- Click "Add Job" button -->
+        <click selector="#add" stepKey="clickAddExportJobButton" />
+        <waitForPageLoad stepKey="waitForNewExportPageOpened" />
+    </actionGroup>
+
+    <actionGroup name="AdminExportConsoleResultActionGroup">
+        <annotations>
+            <description>Checking export results</description>
+        </annotations>
+        <arguments>
+            <argument name="consoleExportResult"/>
+        </arguments>
+        <waitForText userInput="The export is finished." selector="{{AdminExportSaveAndRun.exportResult}}" stepKey="waitForExportSuccessful"/>
+        <dontSee userInput="There is no data for the export." selector="{{AdminExportSaveAndRun.exportResult}}" stepKey="dontSeeNoData"/>
+        <dontSee userInput="Please provide filter data." selector="{{AdminExportSaveAndRun.exportResult}}" stepKey="dontSeeEmpty"/>
+        <dontSee userInput="The header column names are already set." selector="{{AdminExportSaveAndRun.exportResult}}" stepKey="dontSeeNameAlreadySet"/>
+        <dontSee userInput="Exception" selector="{{AdminExportSaveAndRun.exportResult}}" stepKey="dontSeeException"/>
+    </actionGroup>
+
+</actionGroups>

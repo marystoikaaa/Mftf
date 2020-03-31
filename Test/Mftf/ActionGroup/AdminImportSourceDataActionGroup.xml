@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <actionGroup name="AdminImportSourceDataActionGroup">
+        <annotations>
+            <description>Input sftp data</description>
+        </annotations>
+        <arguments>
+            <argument name="sftpData"/>
+        </arguments>
+        <fillField selector="{{AdminImportSourceSection.sftpHost}}" userInput="***" stepKey="fillSftpHost"/>
+        <fillField selector="{{AdminImportSourceSection.sftpPort}}" userInput="***" stepKey="fillSftpPort"/>
+        <fillField selector="{{AdminImportSourceSection.sftpUser}}" userInput="***" stepKey="fillSftpUser"/>
+        <fillField selector="{{AdminImportSourceSection.sftpPassword}}" userInput="***" stepKey="fillSftpPassword"/>
+    </actionGroup>
+    <actionGroup name="AdminImportFtpSourceData">
+        <annotations>
+            <description>Input ftp data</description>
+        </annotations>
+        <arguments>
+            <argument name="ftpData"/>
+        </arguments>
+        <fillField selector="{{AdminImportSourceSection.ftpHost}}" userInput="***" stepKey="fillFtpHost"/>
+        <fillField selector="{{AdminImportSourceSection.ftpPort}}" userInput="***" stepKey="fillFtpPort"/>
+        <fillField selector="{{AdminImportSourceSection.ftpUser}}" userInput="***" stepKey="fillFtpUser"/>
+        <fillField selector="{{AdminImportSourceSection.ftpPassword}}" userInput="***" stepKey="fillFtpPassword"/>
+    </actionGroup>
+
+</actionGroups>

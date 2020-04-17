@@ -8,13 +8,13 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="ProductsImportDeleteJsonUrl">
+    <test name="Products04ImportExportFileDelete">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveImport"/>
-            <stories value="Products Import Delete Json Url"/>
-            <title value="Products Import Delete Json Url"/>
-            <description value="Import products successful, products're were replaced"/>
+            <stories value="Products Import Export File Delete"/>
+            <title value="Products Import Export File Delete"/>
+            <description value="Import products successful, products're were deleted"/>
             <severity value="CRITICAL"/>
             <group value="improveImport"/>
         </annotations>
@@ -35,7 +35,7 @@
 
         <!-- Specify general section -->
         <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive" after=""/>
-        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Product Import - add update - xml - file" stepKey="fillGeneralTitle"/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Product Import Export - delete - file" stepKey="fillGeneralTitle"/>
         <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
 
         <!-- Specify Import Settings section -->
@@ -46,9 +46,12 @@
         <selectOption userInput="delete" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
 
         <!-- Specify Import Source section -->
-        <selectOption userInput="json" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
-        <selectOption userInput="url" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
-        <fillField userInput="http://alex-union.dev.firebearstudio.com/media/importexport/test/products_all_types.json" selector="{{AdminImportSourceSection.urlPass}}" stepKey="fillUrlPath" />
+        <selectOption userInput="csv" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
+        <selectOption userInput="ftp" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
+        <fillField selector="{{AdminImportSourceSection.ftpFilePath}}" userInput="/files/import_add_update_sample_data.csv" stepKey="fillFtpFilePath"/>
+        <actionGroup ref="AdminImportFtpSourceData" stepKey="fillFtpData">
+            <argument name="ftpData" />
+        </actionGroup>
 
         <!-- Validate Import file -->
         <click selector="{{AdminImportValidateSection.validateButton}}" stepKey="clickValidateImportFile"/>
@@ -64,6 +67,18 @@
         <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
             <argument name="consoleImportResult" />
         </actionGroup>
+
+        <!-- Check that products were deleted -->
+        <click selector="{{AdminProductGridSection.importCloseButton}}" stepKey="closeRunConsole" />
+        <waitForPageLoad stepKey="waitForConsoleClosed" />
+        <waitForPageLoad stepKey="waitForConsoleClosed2" />
+        <click selector="{{AdminProductGridSection.magentoCatalogButton}}" stepKey="clickCatalogMenu" />
+        <click selector="{{AdminProductGridSection.productGridButton}}" stepKey="openCatalogProductsPage" />
+        <waitForPageLoad stepKey="waitForCatalogPageOpened" />
+        <click selector="{{AdminProductGridSection.productChooseFilterButton}}" stepKey="clickOnFilter"/>
+        <fillField selector="{{AdminProductGridSection.skuInput}}" userInput="tst" stepKey="fillFieldFilterSku"/>
+        <click selector="{{AdminProductGridSection.applyFilterButton}}" stepKey="clickApplyFilters"/>
+        <see userInput="0 records found" selector="{{AdminProductGridSection.recordsInput}}" stepKey="seeThatProductsWereDeleted"/>
 
     </test>
 </tests>

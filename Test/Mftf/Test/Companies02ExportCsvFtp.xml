@@ -7,25 +7,25 @@
 -->
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="ProductsExportCsvFtp">
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="CompaniesExportCsvFtp">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveExport"/>
-            <stories value="Export Products"/>
-            <title value="Export Products Csv Ftp"/>
-            <description value="Export products successful, products're were exported"/>
+            <stories value="Export Companies"/>
+            <title value="Export Companies Csv Ftp"/>
+            <description value="Export companies successful, companies're were exported"/>
             <severity value="CRITICAL"/>
             <group value="improveExport"/>
         </annotations>
         <before>
-        <amOnPage url="admin" stepKey="openAdminPanelPage" />
+            <amOnPage url="admin" stepKey="openAdminPanelPage" />
             <fillField selector="#username" userInput="admin" stepKey="fillLoginField" />
             <fillField selector="#login" userInput="magento2" stepKey="fillPasswordField" />
             <click selector="#login-form .action-login" stepKey="clickLoginButton" />
         </before>
         <after>
-        
+
         </after>
 
         <!-- Go to Export page and click "Add Job" button-->
@@ -35,17 +35,20 @@
 
         <!-- Specify general section -->
         <click selector="{{AdminExportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive"/>
-        <fillField selector="{{AdminExportGeneralSection.generalTitle}}" userInput="Product - Export - csv - ftp " stepKey="fillGeneralTitle"/>
-        
+        <fillField selector="{{AdminExportGeneralSection.generalTitle}}" userInput="Companies - Export - csv - ftp " stepKey="fillGeneralTitle"/>
+
         <!-- Specify Export Settings section -->
-        <selectOption userInput="catalog_product" selector="{{AdminExportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+        <selectOption userInput="company" selector="{{AdminExportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
 
         <!-- Specify Export Behavior section -->
         <selectOption userInput="csv" selector="{{AdminExportBehaviorSection.behaviorBehavior}}" stepKey="selectFileType"/>
+        <click selector="#12" stepKey="checkEntityCompany"/>
+        <click selector="#13" stepKey="checkEntityCustomer"/>
+        <click selector="#14" stepKey="checkEntityCustomerAdvanced"/>
 
         <!-- specify Export Source section -->
         <selectOption userInput="ftp" selector="{{AdminExportSourceSection.exportSource}}" stepKey="selectSource"/>
-        <fillField selector="{{AdminExportSourceSection.ftpFilePath}}" userInput="/files/import_add_update_sample_data.csv"  stepKey="fillFtpFilePath"/>
+        <fillField selector="{{AdminExportSourceSection.ftpFilePath}}" userInput="/files/export_companies.csv"  stepKey="fillFtpFilePath"/>
         <actionGroup ref="AdminExportSourceDataActionGroup" stepKey="fillFtpData">
             <argument name="ftpData" />
         </actionGroup>
@@ -54,13 +57,13 @@
         <click selector="{{AdminExportValidateSection.validateButton}}" stepKey="clickValidateFtp"/>
         <waitForText userInput="Success! Your connection is ready!" selector="{{AdminExportValidateSection.validateResult}}" stepKey="seeValidateText"/>
 
-        <!-- Save and run process --> 
+        <!-- Save and run process -->
         <click selector="{{AdminExportSaveAndRun.saveAndRun}}" stepKey="clickSaveAndRun"/>
         <waitForPageLoad stepKey="waitForSaveAndRunPageOpened"/>
         <click selector="{{AdminExportSaveAndRun.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Export results -->
-        <waitForText userInput="Entity catalog_product" selector="{{AdminExportSaveAndRun.exportResult}}" stepKey="waitForExportEntity"/>
+        <waitForText userInput="Entity company" selector="{{AdminExportSaveAndRun.exportResult}}" stepKey="waitForExportEntity"/>
         <actionGroup ref="AdminExportConsoleResultActionGroup" stepKey="checkExportResult">
             <argument name="consoleExportResult" />
         </actionGroup>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminCompaniesGridSection">
+        <element name="magentoCustomersMenuButton" type="button" selector="#menu-magento-customer-customer" timeout="20"/>
+        <element name="companiesGridButton" type="button" selector=".item-company-index" timeout="20" />
+        <element name="companyFireBear" type="text" selector="//*[contains(text(), 'FireBear')]/../.." timeout="20" />
+        <element name="companyMicrosoft" type="text" selector="//*[contains(text(), 'Microsoft')]/../.." timeout="20" />
+        <element name="companyApple" type="text" selector="//*[contains(text(), 'Apple')]/../.." timeout="20" />
+    </section>
+</sections>

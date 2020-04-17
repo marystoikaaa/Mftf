@@ -15,10 +15,10 @@
         <arguments>
             <argument name="ftpData"/>
         </arguments>
-        <fillField selector="{{AdminExportSourceSection.ftpHost}}" userInput="***"  stepKey="fillFtpHost"/>
-        <fillField selector="{{AdminExportSourceSection.ftpPort}}" userInput="***"  stepKey="fillFtpPort"/>
-        <fillField selector="{{AdminExportSourceSection.ftpUser}}" userInput="***"  stepKey="fillFtpUser"/>
-        <fillField selector="{{AdminExportSourceSection.ftpPassword}}" userInput="***"  stepKey="fillFtpPassword"/>
+        <fillField selector="{{AdminExportSourceSection.ftpHost}}" userInput="{{AdminFtpSourceData.host}}"  stepKey="fillFtpHost"/>
+        <fillField selector="{{AdminExportSourceSection.ftpPort}}" userInput="{{AdminFtpSourceData.port}}"  stepKey="fillFtpPort"/>
+        <fillField selector="{{AdminExportSourceSection.ftpUser}}" userInput="{{AdminFtpSourceData.user}}"  stepKey="fillFtpUser"/>
+        <fillField selector="{{AdminExportSourceSection.ftpPassword}}" userInput="{{AdminFtpSourceData.password}}"  stepKey="fillFtpPassword"/>
     </actionGroup>
 
 </actionGroups>

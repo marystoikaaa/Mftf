@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="Products05ImportAddUpdateXmlFile">
+        <annotations>
+            <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
+            <features value="improveImport"/>
+            <stories value="Import Products"/>
+            <title value="Import Products Successful"/>
+            <description value="Import products successful, products're were imported, config products have child simple products, 
+            bundle products have option with simple products"/>
+            <severity value="CRITICAL"/>
+            <group value="improveImport"/>
+        </annotations>
+        <before>
+        <amOnPage url="admin" stepKey="openAdminPanelPage" />
+            <fillField selector="#username" userInput="admin" stepKey="fillLoginField" />
+            <fillField selector="#login" userInput="magento2" stepKey="fillPasswordField" />
+            <click selector="#login-form .action-login" stepKey="clickLoginButton" />
+        </before>
+        <after>
+        
+        </after>
+
+        <!-- Go to Import page and click "Add Job" button -->
+        <actionGroup ref="AdminImproveImportActionGroup" stepKey="createImportJob">
+            <argument name="importProcess" />
+        </actionGroup>
+
+        <!-- Specify general section -->
+        <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive"/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Product Import - add update - xml - file" stepKey="fillGeneralTitle"/>
+        <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
+
+        <!-- Specify Import Settings section -->
+        <click selector="{{AdminImportSettingsSection.fieldSettings}}" stepKey="openFieldSettings"/>
+        <selectOption userInput="catalog_product" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+
+        <!-- Specify Import Behavior section -->
+        <selectOption userInput="append" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
+
+        <!-- Specify Import Source section -->
+        <selectOption userInput="xlsx" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
+        <selectOption userInput="file" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
+        <fillField selector="{{AdminImportSourceSection.filePath}}" userInput="pub/media/importexport/test/products_all_types.xlsx"  stepKey="fillGoogleFilePath"/>
+
+        <!-- Validate Import file -->
+        <click selector="{{AdminImportValidateSection.validateButton}}" stepKey="clickValidateImportFile"/>
+        <waitForText userInput="File validated successfully." selector="{{AdminImportValidateSection.validateResult}}" stepKey="waitValidateText"/>
+
+        <!-- Save and run process -->
+        <click selector="{{AdminImportSaveAndRun.saveAndRun}}" stepKey="clickSaveAndRun"/>
+        <waitForPageLoad stepKey="waitForSaveAndRunPageOpened"/>
+        <click selector="{{AdminImportSaveAndRun.runButton}}" stepKey="clickRun"/>
+
+        <!-- Check Import results -->
+        <waitForText userInput="Entity catalog_product" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
+        <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
+            <argument name="consoleImportResult" />
+        </actionGroup>
+
+        <!-- Check that products were added -->
+        <click selector="{{AdminProductGridSection.importCloseButton}}" stepKey="closeRunConsole" />
+        <waitForPageLoad stepKey="waitForConsoleClosed" />
+        <waitForPageLoad stepKey="waitForConsoleClosed2" />
+        <click selector="{{AdminProductGridSection.magentoCatalogButton}}" stepKey="clickCatalogMenu" />
+        <click selector="{{AdminProductGridSection.productGridButton}}" stepKey="openCatalogProductsPage" />
+        <waitForPageLoad stepKey="waitForCatalogPageOpened" />
+        <click selector="{{AdminProductGridSection.productChooseFilterButton}}" stepKey="clickOnFilter"/>
+        <fillField selector="{{AdminProductGridSection.skuInput}}" userInput="tst" stepKey="fillFieldFilterSku"/>
+        <click selector="{{AdminProductGridSection.applyFilterButton}}" stepKey="clickApplyFilters"/>
+        <see userInput="18 records found" selector="{{AdminProductGridSection.recordsInput}}" stepKey="seeThatProductsWereAdded"/>
+
+        <!-- Check that configurable product has a child's products -->
+        <click selector="{{AdminProductGridSection.productConfigClick}}" stepKey="goToConfigProduct" />
+        <seeNumberOfElements userInput="3" selector="{{AdminProductGridSection.numberOfSimpleProductsInConfig}}" stepKey="seeSimpleProductsInConfig"/>
+        <moveBack stepKey="moveBack"/>
+        <scrollTo selector="footer" stepKey="scrollFooter"/>
+        <click selector="{{AdminProductGridSection.productDinamicBundleClick}}" stepKey="goToDinamicBundleProduct" />
+        <seeNumberOfElements userInput="2" selector="{{AdminProductGridSection.numberOfSimpleProductsInConfig}}" stepKey="seeSimpleProductsInBundle"/>
+        <click selector="new" stepKey="clickNew" />
+    </test>
+</tests>

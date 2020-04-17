@@ -23,7 +23,6 @@
         <click selector="#add" stepKey="clickAddImportJobButton" />
         <waitForPageLoad stepKey="waitForNewImportPageOpened" />
     </actionGroup>
-    
     <actionGroup name="AdminImportConsoleResultActionGroup">
         <annotations>
             <description>Checking import results</description>

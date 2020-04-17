@@ -38,6 +38,13 @@
         <element name="sftpPassword" type="input" selector=".sftp_password input"  timeout="20"/>
         <!-- url file path-->
         <element name="urlPass" type="input" selector=".url_file_path input" timeout="20" />
+        <!-- googlesheet path -->
+        <element name="googlesheetPath" type="input" selector=".google_file_path input" timeout="20" />
+        <!-- file path -->
+        <element name="filePath" type="input" selector=".file_file_path input" timeout="20"/>
+        <!-- dropbox path -->
+        <element name="dropboxPath" type="input" selector=".dropbox_file_path input" timeout="20"/>
+        <element name="dropboxAccessToken" type="input" selector=".dropbox_access_token input" timeout="20"/>
     </section>
     <section name="AdminImportValidateSection">
         <element name="validateButton" type="button" selector=".source_check_button" timeout="20" />
@@ -48,5 +55,7 @@
         <element name="runButton" type="button" selector=".run" />
         <element name="importResult" type="button" selector="#debug-run" />
     </section>
-    
+    <section name="AdminProductGridSection">
+        <element name="productGridNameProduct" type="button" selector=".data-grid-filters-actions-wrap button"  timeout="30"/>
+    </section>
 </sections>

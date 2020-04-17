@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:DataGenerator/etc/dataProfileSchema.xsd">
+    <entity name="AdminGoogleSheetSourceData">
+        <data key="products" >https://docs.google.com/spreadsheets/d/13FemIzzexF5koAdQYjbcKscqoCfXyknYWkQkbSZGPsk/edit#gid=1164219475</data>
+        <data key="companies">https://docs.google.com/spreadsheets/d/1ASaPIdt8RrZfIP3f1ZmSPG9CQzAYMTNdfzQEhe38bPE/edit#gid=2087652436</data>
+    </entity>
+    <entity name="AdminFtpSourceData">
+        <data key="host">***</data>
+        <data key="port">***</data>
+        <data key="user">***</data>
+        <data key="password">***</data>
+    </entity>
+    <entity name="AdminSftpSourceData">
+        <data key="host">***</data>
+        <data key="port">***</data>
+        <data key="user">***</data>
+        <data key="password">***</data>
+    </entity>
+    <entity name="AdminDropboxSourceData">
+        <data key="accessToken">***</data>
+    </entity>
+   
+</entities>

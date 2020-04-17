@@ -8,13 +8,13 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="ProductsImportExportFileAddUpdate">
+    <test name="Products06ImportReplaceCsvSftp">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveImport"/>
-            <stories value="Products Import Export File AddUpdate"/>
-            <title value="Products Import Export File AddUpdate"/>
-            <description value="Import products successful, products're were added"/>
+            <stories value="Products Import Replace Csv Sftp"/>
+            <title value="Products Import Replace Csv Sftp"/>
+            <description value="Import products successful, products're were replaced"/>
             <severity value="CRITICAL"/>
             <group value="improveImport"/>
         </annotations>
@@ -43,16 +43,15 @@
         <selectOption userInput="catalog_product" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
 
         <!-- Specify Import Behavior section -->
-        <selectOption userInput="append" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
+        <selectOption userInput="replace" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
 
         <!-- Specify Import Source section -->
         <selectOption userInput="csv" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
-        <selectOption userInput="ftp" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
-        <fillField selector="{{AdminImportSourceSection.ftpFilePath}}" userInput="***" stepKey="fillFtpFilePath"/>
-        <fillField selector="{{AdminImportSourceSection.ftpHost}}" userInput="***" stepKey="fillFtpHost"/>
-        <fillField selector="{{AdminImportSourceSection.ftpPort}}" userInput="***" stepKey="fillFtpPort"/>
-        <fillField selector="{{AdminImportSourceSection.ftpUser}}" userInput="***" stepKey="fillFtpUser"/>
-        <fillField selector="{{AdminImportSourceSection.ftpPassword}}" userInput="***" stepKey="fillFtpPassword"/>
+        <selectOption userInput="sftp" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
+        <fillField selector="{{AdminImportSourceSection.sftpFilePath}}" userInput="/var/www/alex/files/test/product_all_types.csv" stepKey="fillSftpFilePath"/>
+        <actionGroup ref="AdminImportSourceDataActionGroup" stepKey="fillSftpData">
+            <argument name="sftpData" />
+        </actionGroup>
 
         <!-- Validate Import file -->
         <click selector="{{AdminImportValidateSection.validateButton}}" stepKey="clickValidateImportFile"/>

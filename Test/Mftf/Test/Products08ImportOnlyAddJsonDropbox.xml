@@ -8,13 +8,14 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="ProductsImportOnlyUpdateXlsxFtp">
+    <test name="Products08ImportOnlyAddJsonDropbox">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveImport"/>
-            <stories value="Products Import Only Update Xlsx Ftp"/>
-            <title value="Products Import Only Update Xlsx Ftp"/>
-            <description value="Import products successful, products're were added"/>
+            <stories value="Products Import Only Add Json Dropbox"/>
+            <title value="Products Import Only Add Json Dropbox"/>
+            <description value="Import products successful, products're were imported, config products have child simple products,
+            bundle products have option with simple products"/>
             <severity value="CRITICAL"/>
             <group value="improveImport"/>
         </annotations>
@@ -34,8 +35,8 @@
         </actionGroup>
 
         <!-- Specify general section -->
-        <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive" after=""/>
-        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Product Import - add update - xml - file" stepKey="fillGeneralTitle"/>
+        <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive"/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Product Import - only add - json - file" stepKey="fillGeneralTitle"/>
         <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
 
         <!-- Specify Import Settings section -->
@@ -43,15 +44,13 @@
         <selectOption userInput="catalog_product" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
 
         <!-- Specify Import Behavior section -->
-        <selectOption userInput="update" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
+        <selectOption userInput="add" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
 
         <!-- Specify Import Source section -->
-        <selectOption userInput="xlsx" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
-        <selectOption userInput="ftp" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
-        <fillField selector="{{AdminImportSourceSection.ftpFilePath}}" userInput="/files/products_all_types.xlsx" stepKey="fillFtpFilePath"/>
-        <actionGroup ref="AdminImportFtpSourceData" stepKey="fillSftpData">
-            <argument name="ftpData" />
-        </actionGroup>
+        <selectOption userInput="json" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
+        <selectOption userInput="dropbox" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
+        <fillField selector="{{AdminImportSourceSection.dropboxPath}}" userInput="/products_all_types.json" stepKey="fillDropboxFilePath"/>
+        <fillField selector="{{AdminImportSourceSection.dropboxAccessToken}}" userInput="{{AdminDropboxSourceData.accessToken}}" stepKey="fillDropboxAccessToken"/>
 
         <!-- Validate Import file -->
         <click selector="{{AdminImportValidateSection.validateButton}}" stepKey="clickValidateImportFile"/>

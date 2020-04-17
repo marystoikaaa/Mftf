@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="Companies06ExportMapCsvFtp">
+        <annotations>
+            <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
+            <features value="improveExport"/>
+            <stories value="Companies Export Map Csv Ftp"/>
+            <title value="Companies Export Map Csv Ftp"/>
+            <description value="Export companies successful, companies're were exported"/>
+            <severity value="CRITICAL"/>
+            <group value="improveExport"/>
+        </annotations>
+        <before>
+            <amOnPage url="admin" stepKey="openAdminPanelPage" />
+            <fillField selector="#username" userInput="admin" stepKey="fillLoginField" />
+            <fillField selector="#login" userInput="magento2" stepKey="fillPasswordField" />
+            <click selector="#login-form .action-login" stepKey="clickLoginButton" />
+        </before>
+        <after>
+
+        </after>
+
+        <!-- Go to Export page and click "Add Job" button-->
+        <actionGroup ref="AdminImproveExportActionGroup" stepKey="createExportPage">
+            <argument name="exportProcess" />
+        </actionGroup>
+
+        <!-- Specify general section -->
+        <click selector="{{AdminExportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive"/>
+        <fillField selector="{{AdminExportGeneralSection.generalTitle}}" userInput="Companies - Export - map - csv - ftp " stepKey="fillGeneralTitle"/>
+
+        <!-- Specify Export Settings section -->
+        <selectOption userInput="company" selector="{{AdminExportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+
+        <!-- Specify Export Behavior section -->
+        <selectOption userInput="csv" selector="{{AdminExportBehaviorSection.behaviorBehavior}}" stepKey="selectFileType"/>
+        <click selector="#12" stepKey="checkEntityCompany"/>
+        <click selector="#13" stepKey="checkEntityCustomer"/>
+        <click selector="#14" stepKey="checkEntityCustomerAdvanced"/>
+
+        <!-- specify Export Source section -->
+        <selectOption userInput="ftp" selector="{{AdminExportSourceSection.exportSource}}" stepKey="selectSource"/>
+        <fillField selector="{{AdminExportSourceSection.ftpFilePath}}" userInput="/files/export_companies_map.csv"  stepKey="fillFtpFilePath"/>
+        <actionGroup ref="AdminExportSourceDataActionGroup" stepKey="fillFtpData">
+            <argument name="ftpData" />
+        </actionGroup>
+
+        <!-- Check ftp connection -->
+        <click selector="{{AdminExportValidateSection.validateButton}}" stepKey="clickValidateFtp"/>
+        <waitForText userInput="Success! Your connection is ready!" selector="{{AdminExportValidateSection.validateResult}}" stepKey="seeValidateText"/>
+
+        <!--Mapping-->
+        <click selector="{{AdminExportMapping.addMapButton}}" stepKey="clickAddMapping"/>
+        <selectOption userInput="status" selector="{{AdminExportMapping.sourceDataSystemOne}}" stepKey="selectSystemValueOne"/>
+        <fillField userInput="status_map" selector="{{AdminExportMapping.sourceDataExportOne}}" stepKey="fillIExportValueOne"/>
+
+        <click selector="{{AdminExportMapping.addMapButton}}" stepKey="clickAddMappingTwo"/>
+        <selectOption userInput="company_customer" selector="{{AdminExportMapping.mapEntity}}" stepKey="selectMapCustomerEntityOne"/>
+        <selectOption userInput="website_id" selector="{{AdminExportMapping.sourceDataSystemTwo}}" stepKey="selectSystemValueTwo"/>
+        <fillField userInput="website_id_map" selector="{{AdminExportMapping.sourceDataExportTwo}}" stepKey="fillIExportValueTwo"/>
+
+        <click selector="{{AdminExportMapping.addMapButton}}" stepKey="clickAddMappingThree"/>
+        <selectOption userInput="company_customer" selector="{{AdminExportMapping.mapEntity}}" stepKey="selectMapCustomerEntityTwo"/>
+        <selectOption userInput="city" selector="{{AdminExportMapping.sourceDataSystemThree}}" stepKey="selectSystemValueThree"/>
+        <fillField userInput="city_map" selector="{{AdminExportMapping.sourceDataExportThree}}" stepKey="fillIExportValueThree"/>
+        <fillField userInput="City_Map" selector="{{AdminExportMapping.sourceDataMapReplaceThree}}" stepKey="fillIExportMapReplaceValueThree"/>
+
+        <!-- Save and run process -->
+        <click selector="{{AdminExportSaveAndRun.saveAndRun}}" stepKey="clickSaveAndRun"/>
+        <waitForPageLoad stepKey="waitForSaveAndRunPageOpened"/>
+        <click selector="{{AdminExportSaveAndRun.runButton}}" stepKey="clickRun"/>
+
+        <!-- Check Export results -->
+        <waitForText userInput="Entity company" selector="{{AdminExportSaveAndRun.exportResult}}" stepKey="waitForExportEntity"/>
+        <actionGroup ref="AdminExportConsoleResultActionGroup" stepKey="checkExportResult">
+            <argument name="consoleExportResult" />
+        </actionGroup>
+    </test>
+</tests>

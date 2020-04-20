@@ -8,13 +8,13 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="Companies03ImportExportFileDelete">
+    <test name="Companies09ImportReplaceCsvSftp">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveImport"/>
-            <stories value="Companies Import Export File Delete"/>
-            <title value="Companies Import Export File Delete"/>
-            <description value="Import companies successful, companies're were deleted"/>
+            <stories value="Companies Import Replace Csv Sftp"/>
+            <title value="Companies Import Replace Csv Sftp"/>
+            <description value="Import companies successful, companies're were replaced"/>
             <severity value="CRITICAL"/>
             <group value="improveImport"/>
         </annotations>
@@ -35,7 +35,7 @@
 
         <!-- Specify general section -->
         <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive" after=""/>
-        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Companies Import Export - delete - file" stepKey="fillGeneralTitle"/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Companies Import - replace - csv - sftp" stepKey="fillGeneralTitle"/>
         <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
 
         <!-- Specify Import Settings section -->
@@ -43,14 +43,14 @@
         <selectOption userInput="company" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
 
         <!-- Specify Import Behavior section -->
-        <selectOption userInput="delete" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
+        <selectOption userInput="replace" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
 
         <!-- Specify Import Source section -->
         <selectOption userInput="csv" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
-        <selectOption userInput="ftp" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
-        <fillField selector="{{AdminImportSourceSection.ftpFilePath}}" userInput="/files/import_add_update_sample_data.csv" stepKey="fillFtpFilePath"/>
-        <actionGroup ref="AdminImportFtpSourceData" stepKey="fillFtpData">
-            <argument name="ftpData" />
+        <selectOption userInput="sftp" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
+        <fillField selector="{{AdminImportSourceSection.sftpFilePath}}" userInput="/var/www/alex/files/test/b2b_companies.csv" stepKey="fillSftpFilePath"/>
+        <actionGroup ref="AdminImportSourceDataActionGroup" stepKey="fillSftpData">
+            <argument name="sftpData" />
         </actionGroup>
 
         <!-- Validate Import file -->
@@ -63,18 +63,10 @@
         <click selector="{{AdminImportSaveAndRun.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Import results -->
-        <waitForText userInput="Entity catalog_product" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
+        <waitForText userInput="Entity company" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
         <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
             <argument name="consoleImportResult" />
         </actionGroup>
-
-        <!-- Check that companies were deleted -->
-        <click selector="{{AdminProductGridSection.importCloseButton}}" stepKey="closeRunConsole" />
-        <waitForPageLoad stepKey="waitForConsoleClosed" />
-        <click selector="{{AdminCompaniesGridSection.magentoCustomersMenuButton}}" stepKey="clickCustomersMenu" />
-        <click selector="{{AdminCompaniesGridSection.companiesGridButton}}" stepKey="openCompaniesGridPage" />
-        <waitForPageLoad stepKey="waitForCompaniesPageOpened" />
-        <see userInput="0 records found" selector="{{AdminProductGridSection.recordsInput}}" stepKey="seeThatCompaniesWereDeleted"/>
 
     </test>
 </tests>

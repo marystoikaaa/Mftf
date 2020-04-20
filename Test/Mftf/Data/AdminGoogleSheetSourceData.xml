@@ -11,6 +11,10 @@
     <entity name="AdminGoogleSheetSourceData">
         <data key="products" >https://docs.google.com/spreadsheets/d/13FemIzzexF5koAdQYjbcKscqoCfXyknYWkQkbSZGPsk/edit#gid=1164219475</data>
         <data key="companies">https://docs.google.com/spreadsheets/d/1ASaPIdt8RrZfIP3f1ZmSPG9CQzAYMTNdfzQEhe38bPE/edit#gid=2087652436</data>
+        <data key="shared_catalog">https://docs.google.com/spreadsheets/d/1ASaPIdt8RrZfIP3f1ZmSPG9CQzAYMTNdfzQEhe38bPE/edit#gid=2137364248</data>
+        <data key="requsition_list">https://docs.google.com/spreadsheets/d/1ASaPIdt8RrZfIP3f1ZmSPG9CQzAYMTNdfzQEhe38bPE/edit#gid=1361515626</data>
+        <data key="quotes">https://docs.google.com/spreadsheets/d/1ASaPIdt8RrZfIP3f1ZmSPG9CQzAYMTNdfzQEhe38bPE/edit#gid=1840487190</data>
+        <data key="company_roles">https://docs.google.com/spreadsheets/d/1ASaPIdt8RrZfIP3f1ZmSPG9CQzAYMTNdfzQEhe38bPE/edit#gid=445683141</data>
     </entity>
     <entity name="AdminFtpSourceData">
         <data key="host">***</data>

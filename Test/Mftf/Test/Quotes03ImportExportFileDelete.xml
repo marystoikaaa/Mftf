@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="Quotes03ImportExportFileDelete">
+        <annotations>
+            <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
+            <features value="improveImport"/>
+            <stories value="Quotes Import Export File Delete"/>
+            <title value="Quotes Import Export File Delete"/>
+            <description value="Import Quotes successful, Quotes're were deleted"/>
+            <severity value="CRITICAL"/>
+            <group value="improveImport"/>
+        </annotations>
+        <before>
+            <amOnPage url="admin" stepKey="openAdminPanelPage" />
+            <fillField selector="#username" userInput="admin" stepKey="fillLoginField" />
+            <fillField selector="#login" userInput="magento2" stepKey="fillPasswordField" />
+            <click selector="#login-form .action-login" stepKey="clickLoginButton" />
+        </before>
+        <after>
+
+        </after>
+
+        <!-- Go to Import page and click "Add Job" button -->
+        <actionGroup ref="AdminImproveImportActionGroup" stepKey="createImportJob">
+            <argument name="importProcess" />
+        </actionGroup>
+
+        <!-- Specify general section -->
+        <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive" after=""/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Quotes Import Export - delete - file" stepKey="fillGeneralTitle"/>
+        <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
+
+        <!-- Specify Import Settings section -->
+        <click selector="{{AdminImportSettingsSection.fieldSettings}}" stepKey="openFieldSettings"/>
+        <selectOption userInput="quote" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+
+        <!-- Specify Import Behavior section -->
+        <selectOption userInput="delete" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
+
+        <!-- Specify Import Source section -->
+        <selectOption userInput="csv" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
+        <selectOption userInput="ftp" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
+        <fillField selector="{{AdminImportSourceSection.ftpFilePath}}" userInput="/files/export_quotes.csv" stepKey="fillFtpFilePath"/>
+        <actionGroup ref="AdminImportFtpSourceData" stepKey="fillFtpData">
+            <argument name="ftpData" />
+        </actionGroup>
+
+        <!-- Validate Import file -->
+        <click selector="{{AdminImportValidateSection.validateButton}}" stepKey="clickValidateImportFile"/>
+        <waitForText userInput="File validated successfully." selector="{{AdminImportValidateSection.validateResult}}" stepKey="waitValidateText"/>
+
+        <!-- Save and run process -->
+        <click selector="{{AdminImportSaveAndRun.saveAndRun}}" stepKey="clickSaveAndRun"/>
+        <waitForPageLoad stepKey="waitForSaveAndRunPageOpened"/>
+        <click selector="{{AdminImportSaveAndRun.runButton}}" stepKey="clickRun"/>
+
+        <!-- Check Import results -->
+        <waitForText userInput="Entity quote" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
+        <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
+            <argument name="consoleImportResult" />
+        </actionGroup>
+
+        <!-- Check that quotes were deleted -->
+        <click selector="{{AdminProductGridSection.importCloseButton}}" stepKey="closeRunConsole" />
+        <waitForPageLoad stepKey="waitForConsoleClosed" />
+        <click selector="{{AdminQuotesGridSection.magentoQuotesMenuButton}}" stepKey="clickQuoteMenu" />
+        <click selector="{{AdminQuotesGridSection.quotesGridButton}}" stepKey="openQuotesGridPage" />
+        <waitForPageLoad stepKey="waitForQuotePageOpened" />
+        <see userInput="0 records found" selector="{{AdminProductGridSection.recordsInput}}" stepKey="seeThatQuotesWereDeleted"/>
+
+    </test>
+</tests>

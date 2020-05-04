@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="CompanyRole01ImportAddUpdateCsvGooglesheet">
+        <annotations>
+            <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
+            <features value="improveImport"/>
+            <stories value="CompanyRole Import Add Update Csv Googlesheet"/>
+            <title value="CompanyRole Import Add Update Csv Googlesheet"/>
+            <description value="Import CompanyRole successful, CompanyRoles're were imported"/>
+            <severity value="CRITICAL"/>
+            <group value="improveImport"/>
+        </annotations>
+        <before>
+            <amOnPage url="admin" stepKey="openAdminPanelPage" />
+            <fillField selector="#username" userInput="admin" stepKey="fillLoginField" />
+            <fillField selector="#login" userInput="magento2" stepKey="fillPasswordField" />
+            <click selector="#login-form .action-login" stepKey="clickLoginButton" />
+        </before>
+        <after>
+
+        </after>
+
+        <!-- Go to Import page and click "Add Job" button -->
+        <actionGroup ref="AdminImproveImportActionGroup" stepKey="createImportJob">
+            <argument name="importProcess" />
+        </actionGroup>
+
+        <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive" after=""/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="CompanyRole - Import - add update - csv - google sheet" stepKey="fillGeneralTitle"/>
+        <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
+
+        <!-- Specify Import Settings section -->
+        <click selector="{{AdminImportSettingsSection.fieldSettings}}" stepKey="openFieldSettings"/>
+        <selectOption userInput="company_role" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+
+        <!-- Specify Import Behavior section -->
+        <selectOption userInput="append" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
+
+        <!-- Specify Import Source section -->
+        <selectOption userInput="csv" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
+        <selectOption userInput="google" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
+        <appendField selector="{{AdminImportSourceSection.googlesheetPath}}"
+                     userInput="{{AdminGoogleSheetSourceData.company_roles}}"
+                     stepKey="fillGoogleFilePath"/>
+
+        <!-- Validate Import file -->
+        <click selector="{{AdminImportValidateSection.validateButton}}" stepKey="clickValidateImportFile"/>
+        <waitForText userInput="File validated successfully." selector="{{AdminImportValidateSection.validateResult}}" stepKey="waitValidateText"/>
+
+        <!-- Save and run process -->
+        <click selector="{{AdminImportSaveAndRun.saveAndRun}}" stepKey="clickSaveAndRun"/>
+        <waitForPageLoad stepKey="waitForSaveAndRunPageOpened"/>
+        <click selector="{{AdminImportSaveAndRun.runButton}}" stepKey="clickRun"/>
+
+        <!-- Check Import results -->
+        <waitForText userInput="Entity company_role" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
+        <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
+            <argument name="consoleImportResult" />
+        </actionGroup>
+
+    </test>
+</tests>

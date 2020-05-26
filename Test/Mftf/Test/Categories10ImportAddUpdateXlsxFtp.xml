@@ -8,13 +8,13 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="Categories08ImportDeleteJsonUrl">
+    <test name="Categories10ImportAddUpdateXlsxFtp">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveImport"/>
-            <stories value="Categories Import Delete Json Url"/>
-            <title value="Categories Import Delete Json Url"/>
-            <description value="Import Categories successful, Categories're were deleted"/>
+            <stories value="Categories Import AddUpdate Xlsx Ftp"/>
+            <title value="Categories Import AddUpdate Xlsx Ftp"/>
+            <description value="Import Categories successful, Categories're were added"/>
             <severity value="CRITICAL"/>
             <group value="improveImport"/>
             <group value="improveImportExport"/>
@@ -37,8 +37,8 @@
 
         <!-- Specify general section -->
         <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive" after=""/>
-        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Categories Import - add update - xml - file" stepKey="fillGeneralTitle"/>
-        <click selector="{{AdminImportGeneralSection.generalGenerateUrl}}" stepKey="enableUrlIfDuplicate"/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Categories Import - add update - xlsx - file" stepKey="fillGeneralTitle"/>
+         <click selector="{{AdminImportGeneralSection.generalGenerateUrl}}" stepKey="enableUrlIfDuplicate"/>
         <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
 
         <!-- Specify Import Settings section -->
@@ -46,12 +46,15 @@
         <selectOption userInput="catalog_category" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
 
         <!-- Specify Import Behavior section -->
-        <selectOption userInput="delete" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
+        <selectOption userInput="append" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
 
         <!-- Specify Import Source section -->
-        <selectOption userInput="json" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
-        <selectOption userInput="url" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
-        <fillField userInput="http://alex-union.dev.firebearstudio.com/media/importexport/test/categories.json" selector="{{AdminImportSourceSection.urlPass}}" stepKey="fillUrlPath" />
+        <selectOption userInput="xlsx" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
+        <selectOption userInput="ftp" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
+        <fillField selector="{{AdminImportSourceSection.ftpFilePath}}" userInput="/files/categories.xlsx" stepKey="fillFtpFilePath"/>
+        <actionGroup ref="AdminImportFtpSourceData" stepKey="fillFtpData">
+            <argument name="ftpData" />
+        </actionGroup>
 
         <!-- Validate Import file -->
         <click selector="{{AdminImportValidateSection.validateButton}}" stepKey="clickValidateImportFile"/>
@@ -67,16 +70,6 @@
         <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
             <argument name="consoleImportResult" />
         </actionGroup>
-        
-         <!-- Check that Categories were deleted -->
-        <click selector="{{AdminProductGridSection.importCloseButton}}" stepKey="closeRunConsole" />
-        <waitForPageLoad stepKey="waitForConsoleClosed" />
-        <waitForPageLoad stepKey="waitForConsoleClosed2" />
-        <click selector="{{AdminProductGridSection.magentoCatalogButton}}" stepKey="clickOnCatalogButton" />
-        <click selector="{{AdminCategoriesGridSection.categoryMenu}}" stepKey="goToCategoryPage" />
-        <see userInput="Default" selector="{{AdminCategoriesGridSection.categoryBlock}}" stepKey="seeThatDefaultCategoryExist"/>
-        <dontSee userInput="First test category" selector="{{AdminCategoriesGridSection.categoryBlock}}" stepKey="seeThatFirstCategoryWasAdded"/>
-        <dontSee userInput="Second test category" selector="{{AdminCategoriesGridSection.categoryBlock}}" stepKey="seeThatSecondCategoryWasAdded"/>
-        <dontSee userInput="Third test category" selector="{{AdminCategoriesGridSection.categoryBlock}}" stepKey="seeThatThirdCategoryWasAdded"/>
+
     </test>
 </tests>

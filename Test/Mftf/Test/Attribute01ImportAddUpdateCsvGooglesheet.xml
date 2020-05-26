@@ -8,16 +8,17 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="Products01ImportAddUpdateCsvGooglesheet">
+    <test name="Attribute01ImportAddUpdateCsvGooglesheet">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveImport"/>
-            <stories value="Products Import Add Update Csv Googlesheet"/>
-            <title value="Products Import Add Update Csv Googlesheet"/>
-            <description value="Import products successful, products're were imported, config products have child simple products, 
-            bundle products have option with simple products"/>
+            <stories value="Attribute Import Add Update Csv Googlesheet"/>
+            <title value="Attribute Import Add Update Csv Googlesheet"/>
+            <description value="Import Attribute successful"/>
             <severity value="CRITICAL"/>
             <group value="improveImport"/>
+            <group value="improveImportExport"/>
+            <group value="improveImportExportAttribute"/>
         </annotations>
         <before>
         <amOnPage url="admin" stepKey="openAdminPanelPage" />
@@ -35,12 +36,13 @@
         </actionGroup>
 
         <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive" after=""/>
-        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Product Import - add update - csv - google sheet" stepKey="fillGeneralTitle"/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Attribute Import - add update - csv - google sheet" stepKey="fillGeneralTitle"/>
+        <click selector="{{AdminImportGeneralSection.generalGenerateUrl}}" stepKey="enableUrlIfDuplicate"/>
         <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
         
         <!-- Specify Import Settings section -->
         <click selector="{{AdminImportSettingsSection.fieldSettings}}" stepKey="openFieldSettings"/>
-        <selectOption userInput="catalog_product" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+        <selectOption userInput="attribute" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
 
         <!-- Specify Import Behavior section -->
         <selectOption userInput="append" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
@@ -49,9 +51,9 @@
         <selectOption userInput="csv" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
         <selectOption userInput="google" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
         <!-- <appendField selector="{{AdminImportSourceSection.googlesheetPath}}"
-                   userInput="{{AdminGoogleSheetSourceData.products}}"
+                   userInput="{{AdminGoogleSheetSourceData.Attribute}}"
                    stepKey="fillGoogleFilePath"/> -->
-        <executeJS function="return String('https://docs.google.com/spreadsheets/d/13FemIzzexF5koAdQYjbcKscqoCfXyknYWkQkbSZGPsk/edit#gid=1164219475');" stepKey="returnTime"/>
+        <executeJS function="return String('https://docs.google.com/spreadsheets/d/13FemIzzexF5koAdQYjbcKscqoCfXyknYWkQkbSZGPsk/edit#gid=1515205707');" stepKey="returnTime"/>
         <fillField selector="{{AdminImportSourceSection.googlesheetPath}}"
                    userInput="{$returnTime}"
                    stepKey="fillGoogleFilePath"/>
@@ -68,10 +70,10 @@
         <click selector="{{AdminImportSaveAndRun.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Import results -->
-        <waitForText userInput="Entity catalog_product" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
+        <waitForText userInput="Entity attribute" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
         <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
             <argument name="consoleImportResult" />
         </actionGroup>
-
+        
     </test>
 </tests>

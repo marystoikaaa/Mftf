@@ -10,6 +10,9 @@
           xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
 
     <section name="AdminImportGeneralSection">
+        <element name="menuMagentoBackendSystem" type="button" selector=" #menu-magento-backend-system" timeout="2000" />
+        <element name="importJobButton" type="button" selector=" .item-import-job a" timeout="2000" />
+        <element name="addImportJobButton" type="button" selector="#add" timeout="2000" />
         <element name="generalIsActive" type="button" selector=".general_is_active label" timeout="2000" />
         <element name="generalTitle" type="input" selector=".general_title input"  timeout="2000"/>
         <element name="generalGenerateUrl" type="button" selector=".general_generate_url label"  timeout="2000"/>

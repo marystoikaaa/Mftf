@@ -16,11 +16,11 @@
             <argument name="importProcess"/>
         </arguments>
         <!-- Go to Import page -->
-        <click selector="#menu-magento-backend-system" stepKey="openSystem" />
-        <click selector=".item-import-job" stepKey="openImportPage" />
+        <click selector="{{AdminImportGeneralSection.menuMagentoBackendSystem}}" stepKey="openSystem" />
+        <click selector="{{AdminImportGeneralSection.importJobButton}}" stepKey="openImportPage" />
 
         <!-- Click "Add Job" button -->
-        <click selector="#add" stepKey="clickAddImportJobButton" />
+        <click selector="{{AdminImportGeneralSection.addImportJobButton}}" stepKey="clickAddImportJobButton" />
         <waitForPageLoad stepKey="waitForNewImportPageOpened" />
     </actionGroup>
     <actionGroup name="AdminImportConsoleResultActionGroup">

@@ -11,6 +11,6 @@
 
     <section name="AdminSharedCatalogGridSection">
         <element name="magentoSharedCatalogMenuButton" type="button" selector="#menu-magento-catalog-catalog" timeout="20"/>
-        <element name="sharedCatalogGridButton" type="button" selector="item-shared-list" timeout="20" />
+        <element name="sharedCatalogGridButton" type="button" selector=".item-shared-list" timeout="20" />
     </section>
 </sections>

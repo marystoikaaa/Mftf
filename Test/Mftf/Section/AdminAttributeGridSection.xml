@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminAttributeGridSection">
+        <element name="storesMenuButton" type="button" selector="#menu-magento-backend-stores" timeout="200" />
+        <element name="attributeMenu" type="button" selector=".item-catalog-attributes-attributes a" timeout="200" />
+        <element name="filterInput" type="text" selector=".col-attribute_code input" timeout="200" />
+        <element name="buttonApplyFilter" type="button" selector=".admin__filter-actions [data-action='grid-filter-apply']" timeout="200" />
+        <element name="attributeGridTable" type="text" selector="#attributeGrid_table" timeout="200" />
+    </section>
+</sections>

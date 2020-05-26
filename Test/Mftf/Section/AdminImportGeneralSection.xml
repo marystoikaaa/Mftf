@@ -10,52 +10,53 @@
           xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
 
     <section name="AdminImportGeneralSection">
-        <element name="generalIsActive" type="button" selector=".general_is_active label" timeout="20" />
-        <element name="generalTitle" type="input" selector=".general_title input"  timeout="20"/>
-        <element name="generalReindex" type="button" selector=".general_reindex label"  timeout="20"/>
+        <element name="generalIsActive" type="button" selector=".general_is_active label" timeout="2000" />
+        <element name="generalTitle" type="input" selector=".general_title input"  timeout="2000"/>
+        <element name="generalGenerateUrl" type="button" selector=".general_generate_url label"  timeout="2000"/>
+        <element name="generalReindex" type="button" selector=".general_reindex label"  timeout="2000"/>
     </section>
     <section name="AdminImportSettingsSection">
-        <element name="fieldSettings" type="button" selector=".admin__collapsible-block-wrapper" timeout="20" />
-        <element name="settingsEntity" type="select" selector=".settings_entity select"  timeout="20"/>
+        <element name="fieldSettings" type="button" selector=".admin__collapsible-block-wrapper" timeout="2000" />
+        <element name="settingsEntity" type="select" selector=".settings_entity select"  timeout="2000"/>
     </section>
     <section name="AdminImportBehaviorSection">
-        <element name="behaviorBehavior" type="select" selector=".behavior_behavior select" timeout="20" />
+        <element name="behaviorBehavior" type="select" selector=".behavior_behavior select" timeout="2000" />
     </section>
     <section name="AdminImportSourceSection">
-        <element name="typeFile" type="select" selector=".type_file select" timeout="20" />
-        <element name="importSource" type="select" selector=".import_source select"  timeout="20"/>
+        <element name="typeFile" type="select" selector=".type_file select" timeout="2000" />
+        <element name="importSource" type="select" selector=".import_source select"  timeout="2000"/>
         <!--ftp file path-->
-        <element name="ftpFilePath" type="input" selector=".ftp_file_path input"  timeout="20"/>
-        <element name="ftpHost" type="input" selector=".ftp_host input" timeout="20" />
-        <element name="ftpPort" type="input" selector=".ftp_port input"  timeout="20"/>
-        <element name="ftpUser" type="input" selector=".ftp_user input"  timeout="20"/>
-        <element name="ftpPassword" type="input" selector=".ftp_password input"  timeout="20"/>
+        <element name="ftpFilePath" type="input" selector=".ftp_file_path input"  timeout="2000"/>
+        <element name="ftpHost" type="input" selector=".ftp_host input" timeout="2000" />
+        <element name="ftpPort" type="input" selector=".ftp_port input"  timeout="2000"/>
+        <element name="ftpUser" type="input" selector=".ftp_user input"  timeout="2000"/>
+        <element name="ftpPassword" type="input" selector=".ftp_password input"  timeout="2000"/>
         <!--sftp file path-->
-        <element name="sftpFilePath" type="input" selector=".sftp_file_path input"  timeout="20"/>
-        <element name="sftpHost" type="input" selector=".sftp_host input" timeout="20" />
-        <element name="sftpPort" type="input" selector=".sftp_port input"  timeout="20"/>
-        <element name="sftpUser" type="input" selector=".sftp_username input"  timeout="20"/>
-        <element name="sftpPassword" type="input" selector=".sftp_password input"  timeout="20"/>
+        <element name="sftpFilePath" type="input" selector=".sftp_file_path input"  timeout="2000"/>
+        <element name="sftpHost" type="input" selector=".sftp_host input" timeout="2000" />
+        <element name="sftpPort" type="input" selector=".sftp_port input"  timeout="2000"/>
+        <element name="sftpUser" type="input" selector=".sftp_username input"  timeout="2000"/>
+        <element name="sftpPassword" type="input" selector=".sftp_password input"  timeout="2000"/>
         <!-- url file path-->
-        <element name="urlPass" type="input" selector=".url_file_path input" timeout="20" />
+        <element name="urlPass" type="input" selector=".url_file_path input" timeout="2000" />
         <!-- googlesheet path -->
-        <element name="googlesheetPath" type="input" selector=".google_file_path input" timeout="20" />
+        <element name="googlesheetPath" type="input" selector=".google_file_path input" timeout="2000" />
         <!-- file path -->
-        <element name="filePath" type="input" selector=".file_file_path input" timeout="20"/>
+        <element name="filePath" type="input" selector=".file_file_path input" timeout="2000"/>
         <!-- dropbox path -->
-        <element name="dropboxPath" type="input" selector=".dropbox_file_path input" timeout="20"/>
-        <element name="dropboxAccessToken" type="input" selector=".dropbox_access_token input" timeout="20"/>
+        <element name="dropboxPath" type="input" selector=".dropbox_file_path input" timeout="2000"/>
+        <element name="dropboxAccessToken" type="input" selector=".dropbox_access_token input" timeout="2000"/>
     </section>
     <section name="AdminImportValidateSection">
-        <element name="validateButton" type="button" selector=".source_check_button" timeout="20" />
-        <element name="validateResult" type="text" selector=".fieldset_source"  timeout="20"/>
+        <element name="validateButton" type="button" selector=".source_check_button" timeout="2000" />
+        <element name="validateResult" type="text" selector=".fieldset_source"  timeout="2000"/>
     </section>
     <section name="AdminImportSaveAndRun">
-        <element name="saveAndRun" type="button" selector="#save_and_run" />
-        <element name="runButton" type="button" selector=".run" />
-        <element name="importResult" type="button" selector="#debug-run" />
+        <element name="saveAndRun" type="button" selector="#save_and_run"  timeout="2000"/>
+        <element name="runButton" type="button" selector=".run"  timeout="20"/>
+        <element name="importResult" type="button" selector="#debug-run"  timeout="2000" />
     </section>
     <section name="AdminProductGridSection">
-        <element name="productGridNameProduct" type="button" selector=".data-grid-filters-actions-wrap button"  timeout="30"/>
+        <element name="productGridNameProduct" type="button" selector=".data-grid-filters-actions-wrap button"  timeout="2000"/>
     </section>
 </sections>

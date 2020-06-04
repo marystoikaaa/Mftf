@@ -8,7 +8,7 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="Attribute04ExportCsvFtp">
+    <test name="Attribute04ExportFilterCsvFtp">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveExport"/>
@@ -58,8 +58,8 @@
 
         <!-- Filters -->
         <click selector="{{AdminExportFilter.addFilterButton}}" stepKey="clickAddFilterMap"/>
-        <selectOption userInput="attribute_code" selector="{{AdminExportFilter.systemAttrValueSelect}}" stepKey="chooseDefaultValue"/>
-        <fillField userInput="testing" selector="{{AdminExportFilter.exportAttrValueSelect}}" stepKey="fillFilterValue"/>
+        <selectOption userInput="attribute_code" selector="{{AdminExportFilter.systemValueSelect}}" stepKey="chooseDefaultValue"/>
+        <fillField userInput="testing" selector="{{AdminExportFilter.exportValueSelect}}" stepKey="fillFilterValue"/>
 
         <!-- Save and run process --> 
         <click selector="{{AdminExportSaveAndRun.saveAndRun}}" stepKey="clickSaveAndRun"/>

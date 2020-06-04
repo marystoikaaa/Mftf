@@ -10,16 +10,22 @@
           xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
 
     <section name="AdminProductGridSection">
-        <element name="importCloseButton" type="button" selector=".import_job_form_import_job_form_run_import button" timeout="200" />
-        <element name="magentoCatalogButton" type="button" selector="#menu-magento-catalog-catalog" timeout="200"/>
-        <element name="productGridButton" type="button" selector=".item-catalog-products" timeout="200" />
-        <element name="productChooseFilterButton" type="button" selector=".data-grid-filters-actions-wrap button" timeout="200" />
-        <element name="skuInput" type="input" selector="input[name='sku']" timeout="200" />
-        <element name="applyFilterButton" type="button" selector="button.action-secondary" timeout="200" />
-        <element name="recordsInput" type="input" selector=".admin__data-grid-outer-wrap" timeout="200" />
-        <element name="productConfigClick" type="text" selector="//*[contains(text(), 'Test Configurable product')]/../.." timeout="200" />
-        <element name="numberOfSimpleProductsInConfig" type="text" selector="div[data-index='configurable-matrix'] tbody tr" timeout="200" />
-        <element name="productDinamicBundleClick" type="text" selector="//*[contains(text(), 'Test Bundle product with dynamic price')]/../.." timeout="200" />
-        <element name="numberOfSimpleProductsInBundle" type="text" selector="div[data-index='bundle_selections'] tbody tr" timeout="200" />
+        <element name="importCloseButton" type="button" selector=".import_job_form_import_job_form_run_import button" timeout="2000" />
+        <element name="magentoCatalogButton" type="button" selector="#menu-magento-catalog-catalog" timeout="2000"/>
+        <element name="productGridButton" type="button" selector=".item-catalog-products" timeout="2000" />
+        <element name="productChooseFilterButton" type="button" selector=".data-grid-filters-actions-wrap button" timeout="2000" />
+        <element name="skuInput" type="input" selector="input[name='sku']" timeout="2000" />
+        <element name="applyFilterButton" type="button" selector="button.action-secondary" timeout="2000" />
+        <element name="recordsInput" type="input" selector=".admin__data-grid-outer-wrap" timeout="2000" />
+        <element name="productConfigClick" type="text" selector="//*[contains(text(), 'Test Configurable product')]/../.." timeout="2000" />
+        <element name="productSimpleTstClick" type="text" selector="//*[contains(text(), 'Test Configurable-simple product-S-Gray')]/../.." timeout="2000" />
+        <element name="numberOfSimpleProductsInConfig" type="text" selector="div[data-index='configurable-matrix'] tbody tr" timeout="2000" />
+        <element name="productDinamicBundleClick" type="text" selector="//*[contains(text(), 'Test Bundle product with dynamic price')]/../.." timeout="2000" />
+        <element name="numberOfSimpleProductsInBundle" type="text" selector="div[data-index='bundle_selections'] tbody tr" timeout="2000" />
+        <element name="advancedPricingButton" type="button" selector="div[data-index='advanced_pricing_button']" timeout="2000"/>
+        <element name="advancedPricingQty" type="text" selector="div[data-index='price_qty']" timeout="2000" />
+        <element name="advancedPricingPrice" type="input" selector="input[name='product[tier_price][0][price]']" timeout="2000" />
+
+
     </section>
 </sections>

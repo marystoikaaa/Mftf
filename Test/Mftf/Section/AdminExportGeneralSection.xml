@@ -10,6 +10,8 @@
           xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
 
     <section name="AdminExportGeneralSection">
+        <element name="menuMagentoSystemButton" type="button" selector="#menu-magento-backend-system" timeout="2000"/>
+        <element name="itemExportJob" type="button" selector=".item-export-job" timeout="2000"/>
         <element name="generalIsActive" type="button" selector=".general_is_active label" timeout="2000" />
         <element name="generalTitle" type="input" selector=".general_title input"  timeout="2000"/>
     </section>
@@ -51,7 +53,7 @@
     </section>
     <section name="AdminExportFilter">
         <element name="addFilterButton" type="button" selector=".source_filter_map_rows tfoot .addButton" timeout="2000" />
-        <element name="systemAttrValueSelect" type="select" selector=".source_filter_map_source_filter_field select" timeout="2000" />
-        <element name="exportAttrValueSelect" type="input" selector=".source_filter_map_source_filter_filter [name='source_filter_map[text][source_filter_filter]']" timeout="2000" />
+        <element name="systemValueSelect" type="select" selector=".source_filter_map_source_filter_field select" timeout="2000" />
+        <element name="exportValueSelect" type="input" selector=".source_filter_map_source_filter_filter [name='source_filter_map[text][source_filter_filter]']" timeout="2000" />
     </section>
 </sections>

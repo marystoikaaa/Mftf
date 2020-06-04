@@ -70,7 +70,7 @@
         <click selector="{{AdminImportSaveAndRun.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Import results -->
-        <waitForText userInput="Entity catalog_category" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
+        <waitForText userInput="Entity categories" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
         <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
             <argument name="consoleImportResult" />
         </actionGroup>

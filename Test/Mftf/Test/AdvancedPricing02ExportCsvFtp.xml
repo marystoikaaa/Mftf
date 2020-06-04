@@ -8,17 +8,17 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="Categories04ExportCsvFtp">
+    <test name="AdvancedPricing02ExportCsvFtp">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveExport"/>
-            <stories value="Export Filter Categories"/>
-            <title value="Export Filter Categories Csv Ftp"/>
-            <description value="Export Categories successful, Categories're were exported"/>
+            <stories value="Export AdvancedPricing"/>
+            <title value="Export AdvancedPricing Csv Ftp"/>
+            <description value="Export AdvancedPricing successful, AdvancedPricing're were exported"/>
             <severity value="CRITICAL"/>
             <group value="improveImport"/>
             <group value="improveImportExport"/>
-            <group value="improveImportExportCategories"/>
+            <group value="improveImportExportAdvancedPricing"/>
         </annotations>
         <before>
         <amOnPage url="admin" stepKey="openAdminPanelPage" />
@@ -37,10 +37,10 @@
 
         <!-- Specify general section -->
         <click selector="{{AdminExportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive"/>
-        <fillField selector="{{AdminExportGeneralSection.generalTitle}}" userInput="Category - Export - csv - ftp " stepKey="fillGeneralTitle"/>
-    
+        <fillField selector="{{AdminExportGeneralSection.generalTitle}}" userInput="AdvancedPricing - Export - csv - ftp " stepKey="fillGeneralTitle"/>
+        
         <!-- Specify Export Settings section -->
-        <selectOption userInput="catalog_category" selector="{{AdminExportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+        <selectOption userInput="advanced_pricing" selector="{{AdminExportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
 
         <!-- Specify Export Behavior section -->
         <selectOption userInput="csv" selector="{{AdminExportBehaviorSection.behaviorBehavior}}" stepKey="selectFileType"/>
@@ -56,18 +56,13 @@
         <click selector="{{AdminExportValidateSection.validateButton}}" stepKey="clickValidateFtp"/>
         <waitForText userInput="Success! Your connection is ready!" selector="{{AdminExportValidateSection.validateResult}}" stepKey="seeValidateText"/>
 
-        <!-- Filters -->
-         <click selector="{{AdminExportFilter.addFilterButton}}" stepKey="clickAddFilterMap"/>
-        <selectOption userInput="is_active" selector="{{AdminExportFilter.systemValueSelect}}" stepKey="chooseDefaultValue"/>
-        <selectOption userInput="Yes" selector="{{AdminExportFilter.exportValueSelect}}" stepKey="chooseFilterValue"/>
-
         <!-- Save and run process --> 
         <click selector="{{AdminExportSaveAndRun.saveAndRun}}" stepKey="clickSaveAndRun"/>
         <waitForPageLoad stepKey="waitForSaveAndRunPageOpened"/>
         <click selector="{{AdminExportSaveAndRun.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Export results -->
-        <waitForText userInput="Entity categories" selector="{{AdminExportSaveAndRun.exportResult}}" stepKey="waitForExportEntity"/>
+        <waitForText userInput="Entity advanced_pricing" selector="{{AdminExportSaveAndRun.exportResult}}" stepKey="waitForExportEntity"/>
         <actionGroup ref="AdminExportConsoleResultActionGroup" stepKey="checkExportResult">
             <argument name="consoleExportResult" />
         </actionGroup>

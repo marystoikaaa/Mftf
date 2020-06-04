@@ -8,16 +8,17 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="Products08ImportOnlyAddJsonDropbox">
+    <test name="AdvancedPricing10ImportAddUpdateXlsxFtp">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveImport"/>
-            <stories value="Products Import Only Add Json Dropbox"/>
-            <title value="Products Import Only Add Json Dropbox"/>
-            <description value="Import products successful, products're were imported, config products have child simple products,
-            bundle products have option with simple products"/>
+            <stories value="AdvancedPricing Import AddUpdate Xlsx Ftp"/>
+            <title value="AdvancedPricing Import AddUpdate Xlsx Ftp"/>
+            <description value="Import AdvancedPricing successful, AdvancedPricing're were added"/>
             <severity value="CRITICAL"/>
             <group value="improveImport"/>
+            <group value="improveImportExport"/>
+            <group value="improveImportExportAdvancedPricing"/>
         </annotations>
         <before>
             <amOnPage url="admin" stepKey="openAdminPanelPage" />
@@ -35,22 +36,25 @@
         </actionGroup>
 
         <!-- Specify general section -->
-        <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive"/>
-        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Product Import - only add - json - file" stepKey="fillGeneralTitle"/>
+        <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive" after=""/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="AdvancedPricing Import - add update - xlsx - file" stepKey="fillGeneralTitle"/>
+         <click selector="{{AdminImportGeneralSection.generalGenerateUrl}}" stepKey="enableUrlIfDuplicate"/>
         <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
 
         <!-- Specify Import Settings section -->
         <click selector="{{AdminImportSettingsSection.fieldSettings}}" stepKey="openFieldSettings"/>
-        <selectOption userInput="catalog_product" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+        <selectOption userInput="advanced_pricing" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
 
         <!-- Specify Import Behavior section -->
-        <selectOption userInput="add" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
+        <selectOption userInput="append" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
 
         <!-- Specify Import Source section -->
-        <selectOption userInput="json" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
-        <selectOption userInput="dropbox" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
-        <fillField selector="{{AdminImportSourceSection.dropboxPath}}" userInput="/products_all_types.json" stepKey="fillDropboxFilePath"/>
-        <fillField selector="{{AdminImportSourceSection.dropboxAccessToken}}" userInput="{{AdminDropboxSourceData.accessToken}}" stepKey="fillDropboxAccessToken"/>
+        <selectOption userInput="xlsx" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
+        <selectOption userInput="ftp" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
+        <fillField selector="{{AdminImportSourceSection.ftpFilePath}}" userInput="/files/advanced_pricing.xlsx" stepKey="fillFtpFilePath"/>
+        <actionGroup ref="AdminImportFtpSourceData" stepKey="fillFtpData">
+            <argument name="ftpData" />
+        </actionGroup>
 
         <!-- Validate Import file -->
         <click selector="{{AdminImportValidateSection.validateButton}}" stepKey="clickValidateImportFile"/>
@@ -62,7 +66,7 @@
         <click selector="{{AdminImportSaveAndRun.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Import results -->
-        <waitForText userInput="Entity products" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
+        <waitForText userInput="Entity advanced_pricing" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
         <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
             <argument name="consoleImportResult" />
         </actionGroup>

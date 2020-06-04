@@ -61,7 +61,7 @@
         <click selector="{{AdminImportSaveAndRun.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Import results -->
-        <waitForText userInput="Entity catalog_product" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
+        <waitForText userInput="Entity products" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
         <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
             <argument name="consoleImportResult" />
         </actionGroup>
@@ -84,7 +84,7 @@
         <moveBack stepKey="moveBack"/>
         <scrollTo selector="footer" stepKey="scrollFooter"/>
         <click selector="{{AdminProductGridSection.productDinamicBundleClick}}" stepKey="goToDinamicBundleProduct" />
-        <seeNumberOfElements userInput="2" selector="{{AdminProductGridSection.numberOfSimpleProductsInConfig}}" stepKey="seeSimpleProductsInBundle"/>
+        <seeNumberOfElements userInput="2" selector="{{AdminProductGridSection.numberOfSimpleProductsInBundle}}" stepKey="seeSimpleProductsInBundle"/>
         <click selector="new" stepKey="clickNew" />
     </test>
 </tests>

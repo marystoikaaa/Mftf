@@ -8,17 +8,17 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="Categories06ImportAddUpdateXmlFile">
+    <test name="AdvancedPricing06ImportAddUpdateXmlFile">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveImport"/>
-            <stories value="Import Categories"/>
-            <title value="Import Categories Successful"/>
-            <description value="Import Categories successful, Categories're were imported"/>
+            <stories value="Import AdvancedPricing"/>
+            <title value="Import AdvancedPricing Successful"/>
+            <description value="Import AdvancedPricing successful, AdvancedPricing're were imported"/>
             <severity value="CRITICAL"/>
             <group value="improveImport"/>
             <group value="improveImportExport"/>
-            <group value="improveImportExportCategories"/>
+            <group value="improveImportExportAdvancedPricing"/>
         </annotations>
         <before>
         <amOnPage url="admin" stepKey="openAdminPanelPage" />
@@ -37,13 +37,13 @@
 
         <!-- Specify general section -->
         <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive"/>
-        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Categories Import - add update - xml - file" stepKey="fillGeneralTitle"/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="AdvancedPricing Import - add update - xml - file" stepKey="fillGeneralTitle"/>
          <click selector="{{AdminImportGeneralSection.generalGenerateUrl}}" stepKey="enableUrlIfDuplicate"/>
         <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
 
         <!-- Specify Import Settings section -->
         <click selector="{{AdminImportSettingsSection.fieldSettings}}" stepKey="openFieldSettings"/>
-        <selectOption userInput="catalog_category" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+        <selectOption userInput="advanced_pricing" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
 
         <!-- Specify Import Behavior section -->
         <selectOption userInput="append" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
@@ -51,7 +51,7 @@
         <!-- Specify Import Source section -->
         <selectOption userInput="xml" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
         <selectOption userInput="file" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
-        <fillField selector="{{AdminImportSourceSection.filePath}}" userInput="pub/media/importexport/test/categories.xml"  stepKey="fillGoogleFilePath"/>
+        <fillField selector="{{AdminImportSourceSection.filePath}}" userInput="pub/media/importexport/test/advanced_pricing.xml"  stepKey="fillGoogleFilePath"/>
 
         <!-- Validate Import file -->
         <click selector="{{AdminImportValidateSection.validateButton}}" stepKey="clickValidateImportFile"/>
@@ -63,20 +63,26 @@
         <click selector="{{AdminImportSaveAndRun.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Import results -->
-        <waitForText userInput="Entity categories" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
+        <waitForText userInput="Entity advanced_pricing" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
         <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
             <argument name="consoleImportResult" />
         </actionGroup>
 
-        <!-- Check that Categories were added -->
+        <!-- Check that AdvancedPricing were added -->
         <click selector="{{AdminProductGridSection.importCloseButton}}" stepKey="closeRunConsole" />
         <waitForPageLoad stepKey="waitForConsoleClosed" />
         <waitForPageLoad stepKey="waitForConsoleClosed2" />
-        <click selector="{{AdminProductGridSection.magentoCatalogButton}}" stepKey="clickOnCatalogButton" />
-        <click selector="{{AdminCategoriesGridSection.categoryMenu}}" stepKey="goToCategoryPage" />
-        <see userInput="First test category" selector="{{AdminCategoriesGridSection.categoryBlock}}" stepKey="seeThatFirstCategoryWasAdded"/>
-        <see userInput="Second test category" selector="{{AdminCategoriesGridSection.categoryBlock}}" stepKey="seeThatSecondCategoryWasAdded"/>
-        <see userInput="Third test category" selector="{{AdminCategoriesGridSection.categoryBlock}}" stepKey="seeThatThirdCategoryWasAdded"/>
-    
+        <click selector="{{AdminProductGridSection.magentoCatalogButton}}" stepKey="clickCatalogMenu" />
+        <click selector="{{AdminProductGridSection.productGridButton}}" stepKey="openCatalogProductsPage" />
+        <waitForPageLoad stepKey="waitForCatalogPageOpened" />
+        <click selector="{{AdminProductGridSection.productSimpleTstClick}}" stepKey="goToConfigProduct" />
+        <waitForPageLoad stepKey="waitForProductPageOpened" />
+        <click selector="{{AdminProductGridSection.advancedPricingButton}}" stepKey="goToAdvancedPricing" />
+        <waitForPageLoad stepKey="waitForAdvancedPricingPageOpened" />
+        <see userInput="5" selector="{{AdminProductGridSection.advancedPricingQty}}" stepKey="seeThatQtyProductHasValueFive"/>
+        <see userInput="10" selector="{{AdminProductGridSection.advancedPricingQty}}" stepKey="seeThatQtyProductHasValueTen"/>
+        <see userInput="63" selector="{{AdminProductGridSection.advancedPricingPrice}}" stepKey="seeThatPriceProductHasValueSixtyThree"/>
+        <see userInput="58" selector="{{AdminProductGridSection.advancedPricingPrice}}" stepKey="seeThatPriceProductHasValueFiftyEight"/>
+
     </test>
 </tests>

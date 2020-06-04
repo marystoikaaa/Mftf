@@ -77,7 +77,7 @@
         <click selector="{{AdminExportSaveAndRun.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Export results -->
-        <waitForText userInput="Entity catalog_category" selector="{{AdminExportSaveAndRun.exportResult}}" stepKey="waitForExportEntity"/>
+        <waitForText userInput="Entity categories" selector="{{AdminExportSaveAndRun.exportResult}}" stepKey="waitForExportEntity"/>
         <actionGroup ref="AdminExportConsoleResultActionGroup" stepKey="checkExportResult">
             <argument name="consoleExportResult" />
         </actionGroup>

@@ -10,50 +10,50 @@
           xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
 
     <section name="AdminExportGeneralSection">
-        <element name="menuMagentoSystemButton" type="button" selector="#menu-magento-backend-system" timeout="2000"/>
-        <element name="itemExportJob" type="button" selector=".item-export-job" timeout="2000"/>
-        <element name="generalIsActive" type="button" selector=".general_is_active label" timeout="2000" />
-        <element name="generalTitle" type="input" selector=".general_title input"  timeout="2000"/>
+        <element name="menuMagentoSystemButton" type="button" selector="#menu-magento-backend-system" timeout="200"/>
+        <element name="itemExportJob" type="button" selector=".item-export-job" timeout="200"/>
+        <element name="generalIsActive" type="button" selector=".general_is_active label" timeout="200" />
+        <element name="generalTitle" type="input" selector=".general_title input"  timeout="200"/>
     </section>
     <section name="AdminExportSettingsSection">
-        <element name="settingsEntity" type="select" selector=".settings_entity select"  timeout="2000"/>
+        <element name="settingsEntity" type="select" selector=".settings_entity select"  timeout="200"/>
     </section>
     <section name="AdminExportBehaviorSection">
-        <element name="behaviorBehavior" type="select" selector=".behavior_behavior_field_file_format select" timeout="2000" />
+        <element name="behaviorBehavior" type="select" selector=".behavior_behavior_field_file_format select" timeout="200" />
     </section>
     <section name="AdminExportSourceSection">
-        <element name="exportSource" type="select" selector=".source_export_source_entity select"  timeout="2000"/>
+        <element name="exportSource" type="select" selector=".source_export_source_entity select"  timeout="200"/>
         <!--ftp file path-->
-        <element name="ftpFilePath" type="input" selector=".export_source_ftp_file_path input"  timeout="2000"/>
-        <element name="ftpHost" type="input" selector=".export_source_ftp_host input" timeout="2000" />
-        <element name="ftpPort" type="input" selector=".export_source_ftp_port input"  timeout="2000"/>
-        <element name="ftpUser" type="input" selector=".export_source_ftp_user input"  timeout="2000"/>
-        <element name="ftpPassword" type="input" selector=".export_source_ftp_password input"  timeout="2000"/>
+        <element name="ftpFilePath" type="input" selector=".export_source_ftp_file_path input"  timeout="200"/>
+        <element name="ftpHost" type="input" selector=".export_source_ftp_host input" timeout="200" />
+        <element name="ftpPort" type="input" selector=".export_source_ftp_port input"  timeout="200"/>
+        <element name="ftpUser" type="input" selector=".export_source_ftp_user input"  timeout="200"/>
+        <element name="ftpPassword" type="input" selector=".export_source_ftp_password input"  timeout="200"/>
     </section>
     <section name="AdminExportValidateSection">
-        <element name="validateButton" type="button" selector=".source_check_button" timeout="2000" />
-        <element name="validateResult" type="text" selector=".fieldset_source"  timeout="2000"/>
+        <element name="validateButton" type="button" selector=".source_check_button" timeout="200" />
+        <element name="validateResult" type="text" selector=".fieldset_source"  timeout="200"/>
     </section>
     <section name="AdminExportSaveAndRun">
-        <element name="saveAndRun" type="button" selector="#save_and_run" timeout="2000"/>
-        <element name="runButton" type="button" selector=".run" timeout="2000" />
-        <element name="exportResult" type="button" selector="#debug-run" timeout="2000" />
+        <element name="saveAndRun" type="button" selector="#save_and_run" timeout="200"/>
+        <element name="runButton" type="button" selector=".run" timeout="200" />
+        <element name="exportResult" type="button" selector="#debug-run" timeout="200" />
     </section>
     <section name="AdminExportMapping">
-        <element name="mapContainer" type="button" selector=".source_data_map_container_source_data_count .admin__actions-switch" timeout="2000" />
-        <element name="addMapButton" type="button" selector=".source_data_map_rows tfoot .addButton" timeout="2000" />
-        <element name="mapEntity" type="select" selector=".source_data_map_source_data_entity" timeout="2000" />
-        <element name="sourceDataSystemOne" type="select" selector=".record-1 .source_data_map_source_data_system select" timeout="2000" />
-        <element name="sourceDataExportOne" type="input" selector=".record-1 .source_data_map_source_data_export input" timeout="2000" />
-        <element name="sourceDataSystemTwo" type="select" selector=".record-2 .source_data_map_source_data_system select" timeout="2000" />
-        <element name="sourceDataExportTwo" type="input" selector=".record-2 .source_data_map_source_data_export input" timeout="2000" />
-        <element name="sourceDataSystemThree" type="select" selector=".record-3 .source_data_map_source_data_system select" timeout="2000" />
-        <element name="sourceDataExportThree" type="input" selector=".record-3 .source_data_map_source_data_export input" timeout="2000" />
-        <element name="sourceDataMapReplaceThree" type="input" selector=".record-3 .source_data_map_source_data_replace input" timeout="2000" />
+        <element name="mapContainer" type="button" selector=".source_data_map_container_source_data_count .admin__actions-switch" timeout="200" />
+        <element name="addMapButton" type="button" selector=".source_data_map_rows tfoot .addButton" timeout="200" />
+        <element name="mapEntity" type="select" selector=".source_data_map_source_data_entity" timeout="200" />
+        <element name="sourceDataSystemOne" type="select" selector=".record-1 .source_data_map_source_data_system select" timeout="200" />
+        <element name="sourceDataExportOne" type="input" selector=".record-1 .source_data_map_source_data_export input" timeout="200" />
+        <element name="sourceDataSystemTwo" type="select" selector=".record-2 .source_data_map_source_data_system select" timeout="200" />
+        <element name="sourceDataExportTwo" type="input" selector=".record-2 .source_data_map_source_data_export input" timeout="200" />
+        <element name="sourceDataSystemThree" type="select" selector=".record-3 .source_data_map_source_data_system select" timeout="200" />
+        <element name="sourceDataExportThree" type="input" selector=".record-3 .source_data_map_source_data_export input" timeout="200" />
+        <element name="sourceDataMapReplaceThree" type="input" selector=".record-3 .source_data_map_source_data_replace input" timeout="200" />
     </section>
     <section name="AdminExportFilter">
-        <element name="addFilterButton" type="button" selector=".source_filter_map_rows tfoot .addButton" timeout="2000" />
-        <element name="systemValueSelect" type="select" selector=".source_filter_map_source_filter_field select" timeout="2000" />
-        <element name="exportValueSelect" type="input" selector=".source_filter_map_source_filter_filter [name='source_filter_map[text][source_filter_filter]']" timeout="2000" />
+        <element name="addFilterButton" type="button" selector=".source_filter_map_rows tfoot .addButton" timeout="200" />
+        <element name="systemValueSelect" type="select" selector=".source_filter_map_source_filter_field select" timeout="200" />
+        <element name="exportValueSelect" type="input" selector=".source_filter_map_source_filter_filter [name='source_filter_map[text][source_filter_filter]']" timeout="200" />
     </section>
 </sections>

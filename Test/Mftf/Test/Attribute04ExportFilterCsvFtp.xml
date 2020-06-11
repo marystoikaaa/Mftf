@@ -59,7 +59,7 @@
         <!-- Filters -->
         <click selector="{{AdminExportFilter.addFilterButton}}" stepKey="clickAddFilterMap"/>
         <selectOption userInput="attribute_code" selector="{{AdminExportFilter.systemValueSelect}}" stepKey="chooseDefaultValue"/>
-        <fillField userInput="testing" selector="{{AdminExportFilter.exportValueSelect}}" stepKey="fillFilterValue"/>
+        <fillField userInput="testing" selector="{{AdminExportFilter.exportValueInput}}" stepKey="fillFilterValue"/>
 
         <!-- Save and run process --> 
         <click selector="{{AdminExportSaveAndRun.saveAndRun}}" stepKey="clickSaveAndRun"/>

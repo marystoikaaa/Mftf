@@ -59,7 +59,7 @@
         <!-- Filters -->
         <click selector="{{AdminExportFilter.addFilterButton}}" stepKey="clickAddFilterMap"/>
         <selectOption userInput="email" selector="{{AdminExportFilter.systemValueSelect}}" stepKey="chooseDefaultValue"/>
-        <fillField userInput="doe@test.com" selector="{{AdminExportFilter.exportValueSelect}}" stepKey="fillFilterValue"/>
+        <fillField userInput="doe@test.com" selector="{{AdminExportFilter.exportValueInput}}" stepKey="fillFilterValue"/>
 
         <!-- Save and run process --> 
         <click selector="{{AdminExportSaveAndRun.saveAndRun}}" stepKey="clickSaveAndRun"/>

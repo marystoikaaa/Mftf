@@ -51,7 +51,7 @@
         <!-- Specify Import Source section -->
         <selectOption userInput="csv" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
         <selectOption userInput="ftp" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
-        <fillField selector="{{AdminImportSourceSection.ftpFilePath}}" userInput="/files/import_add_update_sample_data.csv" stepKey="fillFtpFilePath"/>
+        <fillField selector="{{AdminImportSourceSection.ftpFilePath}}" userInput="/files/categories.csv" stepKey="fillFtpFilePath"/>
         <actionGroup ref="AdminImportFtpSourceData" stepKey="fillFtpData">
             <argument name="ftpData" />
         </actionGroup>

@@ -54,6 +54,7 @@
     <section name="AdminExportFilter">
         <element name="addFilterButton" type="button" selector=".source_filter_map_rows tfoot .addButton" timeout="200" />
         <element name="systemValueSelect" type="select" selector=".source_filter_map_source_filter_field select" timeout="200" />
-        <element name="exportValueSelect" type="input" selector=".source_filter_map_source_filter_filter [name='source_filter_map[text][source_filter_filter]']" timeout="200" />
+        <element name="exportValueInput" type="input" selector=".source_filter_map_source_filter_filter input[name='source_filter_map[text][source_filter_filter]']" timeout="200" />
+        <element name="exportValueSelect" type="select" selector=".source_filter_map_rows [name='source_filter_map[select][source_filter_filter]']" timeout="200" />
     </section>
 </sections>

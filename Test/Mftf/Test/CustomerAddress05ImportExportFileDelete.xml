@@ -8,17 +8,17 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="Categories03ImportExportFileAddUpdate">
+    <test name="CustomerAddress05ImportExportFileDelete">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveImport"/>
-            <stories value="Categories Import Export File AddUpdate"/>
-            <title value="Categories Import Export File AddUpdate"/>
-            <description value="Import Categories successful, Categories're were added"/>
-            <severity value="CRITICAL"/><group value="improveImport"/>
+            <stories value="CustomerAddress Import Export File Delete"/>
+            <title value="CustomerAddress Import Export File Delete"/>
+            <description value="Import CustomerAddress successful, CustomerAddress're were deleted"/>
+            <severity value="CRITICAL"/>
+            <group value="improveImport"/>
             <group value="improveImportExport"/>
-            <group value="improveImportExportCategories"/>
-            <group value="improveImportExport"/>
+            <group value="improveImportExportCustomerAddress"/>
         </annotations>
         <before>
             <amOnPage url="admin" stepKey="openAdminPanelPage" />
@@ -37,16 +37,16 @@
 
         <!-- Specify general section -->
         <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive" after=""/>
-        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Categories Import Export - add update -  file" stepKey="fillGeneralTitle"/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="CustomerAddress Import Export - delete - file" stepKey="fillGeneralTitle"/>
         <click selector="{{AdminImportGeneralSection.generalGenerateUrl}}" stepKey="enableUrlIfDuplicate"/>
         <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
 
         <!-- Specify Import Settings section -->
         <click selector="{{AdminImportSettingsSection.fieldSettings}}" stepKey="openFieldSettings"/>
-        <selectOption userInput="catalog_category" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+        <selectOption userInput="customer_address" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
 
         <!-- Specify Import Behavior section -->
-        <selectOption userInput="append" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
+        <selectOption userInput="delete" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
 
         <!-- Specify Import Source section -->
         <selectOption userInput="csv" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
@@ -66,10 +66,9 @@
         <click selector="{{AdminImportSaveAndRun.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Import results -->
-        <waitForText userInput="Entity categories" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
+        <waitForText userInput="Entity customer_address" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
         <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
             <argument name="consoleImportResult" />
         </actionGroup>
-
     </test>
 </tests>

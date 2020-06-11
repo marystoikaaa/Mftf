@@ -8,15 +8,17 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="Quotes05ImportAddUpdateXmlFile">
+    <test name="Categories02ImportExportFileAddUpdate">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveImport"/>
-            <stories value="Quotes Import Add Update Xml File"/>
-            <title value="Quotes Import Add Update Xml File"/>
-            <description value="Import quotes successful, quotes're were imported"/>
-            <severity value="CRITICAL"/>
-            <group value="improveImport"/>
+            <stories value="Categories Import Export File AddUpdate"/>
+            <title value="Categories Import Export File AddUpdate"/>
+            <description value="Import Categories successful, Categories're were added"/>
+            <severity value="CRITICAL"/><group value="improveImport"/>
+            <group value="improveImportExport"/>
+            <group value="improveImportExportCategories"/>
+            <group value="improveImportExport"/>
         </annotations>
         <before>
             <amOnPage url="admin" stepKey="openAdminPanelPage" />
@@ -35,20 +37,24 @@
 
         <!-- Specify general section -->
         <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive" after=""/>
-        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Quotes - Import - add update - xml - file" stepKey="fillGeneralTitle"/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Categories Import Export - add update -  file" stepKey="fillGeneralTitle"/>
+        <click selector="{{AdminImportGeneralSection.generalGenerateUrl}}" stepKey="enableUrlIfDuplicate"/>
         <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
 
         <!-- Specify Import Settings section -->
         <click selector="{{AdminImportSettingsSection.fieldSettings}}" stepKey="openFieldSettings"/>
-        <selectOption userInput="quote" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+        <selectOption userInput="catalog_category" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
 
         <!-- Specify Import Behavior section -->
         <selectOption userInput="append" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
 
         <!-- Specify Import Source section -->
-        <selectOption userInput="xml" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
-        <selectOption userInput="file" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
-        <fillField selector="{{AdminImportSourceSection.filePath}}" userInput="pub/media/importexport/test/b2b_negotiable_quotes.xml"  stepKey="fillGoogleFilePath"/>
+        <selectOption userInput="csv" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
+        <selectOption userInput="ftp" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
+        <fillField selector="{{AdminImportSourceSection.ftpFilePath}}" userInput="/files/categories.csv" stepKey="fillFtpFilePath"/>
+        <actionGroup ref="AdminImportFtpSourceData" stepKey="fillFtpData">
+            <argument name="ftpData" />
+        </actionGroup>
 
         <!-- Validate Import file -->
         <click selector="{{AdminImportValidateSection.validateButton}}" stepKey="clickValidateImportFile"/>
@@ -60,7 +66,7 @@
         <click selector="{{AdminImportSaveAndRun.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Import results -->
-        <waitForText userInput="Entity quote" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
+        <waitForText userInput="Entity categories" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
         <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
             <argument name="consoleImportResult" />
         </actionGroup>

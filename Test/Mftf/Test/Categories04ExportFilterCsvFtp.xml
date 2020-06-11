@@ -8,7 +8,7 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="Categories04ExportCsvFtp">
+    <test name="Categories04ExportFilterCsvFtp">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveExport"/>
@@ -57,7 +57,7 @@
         <waitForText userInput="Success! Your connection is ready!" selector="{{AdminExportValidateSection.validateResult}}" stepKey="seeValidateText"/>
 
         <!-- Filters -->
-         <click selector="{{AdminExportFilter.addFilterButton}}" stepKey="clickAddFilterMap"/>
+        <click selector="{{AdminExportFilter.addFilterButton}}" stepKey="clickAddFilterMap"/>
         <selectOption userInput="is_active" selector="{{AdminExportFilter.systemValueSelect}}" stepKey="chooseDefaultValue"/>
         <selectOption userInput="Yes" selector="{{AdminExportFilter.exportValueSelect}}" stepKey="chooseFilterValue"/>
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminOrdersGridSection">
+        <element name="salesMenuButton" type="button" selector="#menu-magento-sales-sales" timeout="200" />
+        <element name="ordersMenu" type="button" selector=".item-sales-order a" timeout="200" />
+        <element name="ordersPage" type="text" selector="#anchor-content" timeout="200" />
+        <element name="orderFourthClick" type="text" selector="//*[contains(text(), '1444444444')]/../.." timeout="200" />
+        <element name="productSkuBlock" type="text" selector=".product-sku-block" timeout="200"/>
+        <element name="productStatus" type="text" selector=".col-status" timeout="200"/>
+        <element name="qtyTable" type="text" selector=".qty-table" timeout="200"/>
+        <element name="totalPrice" type="text" selector=".col-total" timeout="200"/>
+    </section>
+</sections>

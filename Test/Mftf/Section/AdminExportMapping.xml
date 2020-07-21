@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminExportMapping">
+        <element name="mapContainer" type="button" selector=".source_data_map_container_source_data_count .admin__actions-switch" timeout="200" />
+        <element name="addMapButton" type="button" selector=".source_data_map_rows tfoot .addButton" timeout="200" />
+        <element name="mapEntity" type="select" selector=".source_data_map_source_data_entity" timeout="200" />
+        <element name="sourceDataSystemOne" type="select" selector=".record-1 .source_data_map_source_data_system select" timeout="200" />
+        <element name="sourceDataExportOne" type="input" selector=".record-1 .source_data_map_source_data_export input" timeout="200" />
+        <element name="sourceDataSystemTwo" type="select" selector=".record-2 .source_data_map_source_data_system select" timeout="200" />
+        <element name="sourceDataExportTwo" type="input" selector=".record-2 .source_data_map_source_data_export input" timeout="200" />
+        <element name="sourceDataSystemThree" type="select" selector=".record-3 .source_data_map_source_data_system select" timeout="200" />
+        <element name="sourceDataExportThree" type="input" selector=".record-3 .source_data_map_source_data_export input" timeout="200" />
+        <element name="sourceDataMapReplaceThree" type="input" selector=".record-3 .source_data_map_source_data_replace input" timeout="200" />
+    </section>
+    
+</sections>

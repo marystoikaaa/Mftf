@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminExportValidateSection">
+        <element name="validateButton" type="button" selector=".source_check_button" timeout="200" />
+        <element name="validateResult" type="text" selector=".fieldset_source"  timeout="200"/>
+    </section>
+    
+</sections>

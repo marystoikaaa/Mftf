@@ -21,23 +21,18 @@
             <group value="improveImportExportAttribute"/>
         </annotations>
         <before>
-            <amOnPage url="admin" stepKey="openAdminPanelPage" />
-            <fillField selector="#username" userInput="admin" stepKey="fillLoginField" />
-            <fillField selector="#login" userInput="magento2" stepKey="fillPasswordField" />
-            <click selector="#login-form .action-login" stepKey="clickLoginButton" />
+            <actionGroup ref="AdminLogInActionGroup" stepKey="logInAdminPanel"/>
         </before>
         <after>
-
+            <actionGroup ref="AdminLogOutActionGroup" stepKey="logOutAdminPanel"/>
         </after>
 
         <!-- Go to Import page and click "Add Job" button -->
-        <actionGroup ref="AdminImproveImportActionGroup" stepKey="createImportJob">
-            <argument name="importProcess" />
-        </actionGroup>
+        <actionGroup ref="AdminImproveImportActionGroup" stepKey="createImportJob"/>
 
         <!-- Specify general section -->
         <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive" after=""/>
-        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Attribute Import - add update - xml - file" stepKey="fillGeneralTitle"/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Attribute Import - delete - json - url" stepKey="fillGeneralTitle"/>
         <click selector="{{AdminImportGeneralSection.generalGenerateUrl}}" stepKey="enableUrlIfDuplicate"/>
         <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
 
@@ -58,18 +53,16 @@
         <waitForText userInput="File validated successfully." selector="{{AdminImportValidateSection.validateResult}}" stepKey="waitValidateText"/>
 
         <!-- Save and run process -->
-        <click selector="{{AdminImportSaveAndRun.saveAndRun}}" stepKey="clickSaveAndRun"/>
+        <click selector="{{AdminImportSaveAndRunSection.saveAndRun}}" stepKey="clickSaveAndRun"/>
         <waitForPageLoad stepKey="waitForSaveAndRunPageOpened"/>
-        <click selector="{{AdminImportSaveAndRun.runButton}}" stepKey="clickRun"/>
+        <click selector="{{AdminImportSaveAndRunSection.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Import results -->
-        <waitForText userInput="Entity attribute" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
-        <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
-            <argument name="consoleImportResult" />
-        </actionGroup>
+        <waitForText userInput="Entity attribute" selector="{{AdminImportSaveAndRunSection.importResult}}" stepKey="waitForImportEntity"/>
+        <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult"/>
         
-         <!-- Check that Attribute were deleted -->
-       <click selector="{{AdminProductGridSection.importCloseButton}}" stepKey="closeRunConsole" />
+        <!-- Check that Attribute were deleted -->
+        <click selector="{{AAdminImportSaveAndRunSection.importCloseButton}}" stepKey="closeRunConsole" />
         <waitForPageLoad stepKey="waitForConsoleClosed" />
         <waitForPageLoad stepKey="waitForConsoleClosed2" />
         <click selector="{{AdminAttributeGridSection.storesMenuButton}}" stepKey="clickOnStoresButton" />
@@ -78,5 +71,6 @@
         <click selector="{{AdminAttributeGridSection.buttonApplyFilter}}" stepKey="clickSearch"/>
         <dontSee userInput="testing_color" selector="{{AdminAttributeGridSection.attributeGridTable}}" stepKey="seeThatTestingColorWasDeleted"/>
         <dontSee userInput="testing_material" selector="{{AdminAttributeGridSection.attributeGridTable}}" stepKey="seeThatTestingMaterialWasDeleted"/>
+
     </test>
 </tests>

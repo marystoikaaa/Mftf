@@ -10,9 +10,9 @@
           xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
 
     <section name="AdminProductGridSection">
-        <element name="importCloseButton" type="button" selector=".import_job_form_import_job_form_run_import button" timeout="100" />
         <element name="magentoCatalogButton" type="button" selector="#menu-magento-catalog-catalog" timeout="100"/>
         <element name="productGridButton" type="button" selector=".item-catalog-products" timeout="100" />
+        <element name="productGridNameProduct" type="button" selector=".data-grid-filters-actions-wrap button"  timeout="200"/>
         <element name="productChooseFilterButton" type="button" selector=".data-grid-filters-actions-wrap button" timeout="100" />
         <element name="skuInput" type="input" selector="input[name='sku']" timeout="100" />
         <element name="applyFilterButton" type="button" selector="button.action-secondary" timeout="100" />
@@ -22,6 +22,8 @@
         <element name="numberOfSimpleProductsInConfig" type="text" selector="div[data-index='configurable-matrix'] tbody tr" timeout="100" />
         <element name="productDinamicBundleClick" type="text" selector="//*[contains(text(), 'TST-GrpBnd-Bundle-DynamicPrice')]/../.." timeout="100" />
         <element name="numberOfSimpleProductsInBundle" type="text" selector="div[data-index='bundle_selections'] tbody tr" timeout="100" />
+        <element name="productGroupedProductClick" type="text" selector="//*[contains(text(), 'TST-GrpBnd-Simple-1')]/../.." timeout="100" />
+        <element name="numberOfCustomerOptionsInSimple" type="text" selector="div[data-index='custom_options'] tbody tr" timeout="100" />
         <element name="advancedPricingButton" type="button" selector="button[data-index='advanced_pricing_button']" timeout="100"/>
         <element name="advancedPricingQtyOne" type="text" selector="//*[contains(text(), '5')]/../.." timeout="100" />
         <element name="advancedPricingQtyTwo" type="text" selector="//*[contains(text(), '10')]/../.." timeout="100" />

@@ -12,25 +12,11 @@
         <annotations>
             <description>Input sftp data</description>
         </annotations>
-        <arguments>
-            <argument name="sftpData"/>
-        </arguments>
+        
         <fillField selector="{{AdminImportSourceSection.sftpHost}}" userInput="{{AdminSftpSourceData.host}}" stepKey="fillSftpHost"/>
         <fillField selector="{{AdminImportSourceSection.sftpPort}}" userInput="{{AdminSftpSourceData.port}}" stepKey="fillSftpPort"/>
         <fillField selector="{{AdminImportSourceSection.sftpUser}}" userInput="{{AdminSftpSourceData.user}}" stepKey="fillSftpUser"/>
         <fillField selector="{{AdminImportSourceSection.sftpPassword}}" userInput="{{AdminSftpSourceData.password}}" stepKey="fillSftpPassword"/>
-    </actionGroup>
-    <actionGroup name="AdminImportFtpSourceData">
-        <annotations>
-            <description>Input ftp data</description>
-        </annotations>
-        <arguments>
-            <argument name="ftpData"/>
-        </arguments>
-        <fillField selector="{{AdminImportSourceSection.ftpHost}}" userInput="{{AdminFtpSourceData.host}}" stepKey="fillFtpHost"/>
-        <fillField selector="{{AdminImportSourceSection.ftpPort}}" userInput="{{AdminFtpSourceData.port}}" stepKey="fillFtpPort"/>
-        <fillField selector="{{AdminImportSourceSection.ftpUser}}" userInput="{{AdminFtpSourceData.user}}" stepKey="fillFtpUser"/>
-        <fillField selector="{{AdminImportSourceSection.ftpPassword}}" userInput="{{AdminFtpSourceData.password}}" stepKey="fillFtpPassword"/>
     </actionGroup>
 
 </actionGroups>

@@ -12,9 +12,7 @@
         <annotations>
             <description>Create new export job</description>
         </annotations>
-        <arguments>
-            <argument name="exportProcess"/>
-        </arguments>
+        
         <!-- Go to Export page -->
         <click selector="{{AdminExportGeneralSection.menuMagentoSystemButton}}" stepKey="openSystem" />
         <click selector="{{AdminExportGeneralSection.itemExportJob}}" stepKey="openExportPage" />
@@ -27,9 +25,7 @@
         <annotations>
             <description>Checking export results</description>
         </annotations>
-        <arguments>
-            <argument name="consoleExportResult"/>
-        </arguments>
+       
         <waitForText userInput="The export is finished." selector="{{AdminExportSaveAndRunSection.exportResult}}" stepKey="waitForExportSuccessful"/>
         <dontSee userInput="There is no data for the export." selector="{{AdminExportSaveAndRunSection.exportResult}}" stepKey="dontSeeNoData"/>
         <dontSee userInput="Please provide filter data." selector="{{AdminExportSaveAndRunSection.exportResult}}" stepKey="dontSeeEmpty"/>

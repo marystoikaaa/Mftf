@@ -12,9 +12,7 @@
         <annotations>
             <description>Input ftp data</description>
         </annotations>
-        <arguments>
-            <argument name="ftpData"/>
-        </arguments>
+    
         <fillField selector="{{AdminExportSourceSection.ftpHost}}" userInput="{{AdminFtpSourceData.host}}"  stepKey="fillFtpHost"/>
         <fillField selector="{{AdminExportSourceSection.ftpPort}}" userInput="{{AdminFtpSourceData.port}}"  stepKey="fillFtpPort"/>
         <fillField selector="{{AdminExportSourceSection.ftpUser}}" userInput="{{AdminFtpSourceData.user}}"  stepKey="fillFtpUser"/>

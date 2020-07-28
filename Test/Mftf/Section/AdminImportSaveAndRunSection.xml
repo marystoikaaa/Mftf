@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminImportSaveAndRunSection">
+        <element name="saveAndRun" type="button" selector="#save_and_run"  timeout="20"/>
+        <element name="runButton" type="button" selector=".run"  timeout="20"/>
+        <element name="importResult" type="button" selector="#debug-run"  timeout="200" />
+        <element name="importCloseButton" type="button" selector=".import_job_form_import_job_form_run_import button" timeout="100" />
+    </section>
+   
+</sections>

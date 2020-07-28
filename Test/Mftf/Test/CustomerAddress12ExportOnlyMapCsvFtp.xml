@@ -21,19 +21,14 @@
             <group value="improveImportExportCustomerAddress"/>
         </annotations>
         <before>
-            <amOnPage url="admin" stepKey="openAdminPanelPage" />
-            <fillField selector="#username" userInput="admin" stepKey="fillLoginField" />
-            <fillField selector="#login" userInput="magento2" stepKey="fillPasswordField" />
-            <click selector="#login-form .action-login" stepKey="clickLoginButton" />
+            <actionGroup ref="AdminLogInActionGroup" stepKey="logInAdminPanel"/>
         </before>
         <after>
-
+            <actionGroup ref="AdminLogOutActionGroup" stepKey="logOutAdminPanel"/>
         </after>
 
         <!-- Go to Export page and click "Add Job" button-->
-        <actionGroup ref="AdminImproveExportActionGroup" stepKey="createExportPage">
-            <argument name="exportProcess" />
-        </actionGroup>
+        <actionGroup ref="AdminImproveExportActionGroup" stepKey="createExportPage"/>
 
         <!-- Specify general section -->
         <click selector="{{AdminExportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive"/>
@@ -48,38 +43,39 @@
         <!-- specify Export Source section -->
         <selectOption userInput="ftp" selector="{{AdminExportSourceSection.exportSource}}" stepKey="selectSource"/>
         <fillField selector="{{AdminExportSourceSection.ftpFilePath}}" userInput="/files/import_add_update_sample_data.csv"  stepKey="fillFtpFilePath"/>
-        <actionGroup ref="AdminExportSourceDataActionGroup" stepKey="fillFtpData">
-            <argument name="ftpData" />
-        </actionGroup>
+        <actionGroup ref="AdminExportSourceDataActionGroup" stepKey="fillFtpData"/>
 
         <!-- Check ftp connection -->
         <click selector="{{AdminExportValidateSection.validateButton}}" stepKey="clickValidateFtp"/>
         <waitForText userInput="Success! Your connection is ready!" selector="{{AdminExportValidateSection.validateResult}}" stepKey="seeValidateText"/>
 
         <!--Mapping-->
-        <click selector="{{AdminExportMapping.mapContainer}}" stepKey="enableOnlyMap"/>
-        <click selector="{{AdminExportMapping.addMapButton}}" stepKey="clickAddMapping"/>
-        <selectOption userInput="_email" selector="{{AdminExportMapping.sourceDataSystemOne}}" stepKey="selectSystemValueOne"/>
-        <fillField userInput="email_map" selector="{{AdminExportMapping.sourceDataExportOne}}" stepKey="fillIExportValueOne"/>
+        <click selector="{{AdminExportMappingSection.mapContainer}}" stepKey="enableOnlyMap"/>
+        <click selector="{{AdminExportMappingSection.addMapButton}}" stepKey="clickAddMapping"/>
+        <selectOption userInput="_email" selector="{{AdminExportMappingSection.sourceDataSystemOne}}" stepKey="selectSystemValueOne"/>
+        <fillField userInput="email_map" selector="{{AdminExportMappingSection.sourceDataExportOne}}" stepKey="fillIExportValueOne"/>
 
-        <click selector="{{AdminExportMapping.addMapButton}}" stepKey="clickAddMappingTwo"/>
-        <selectOption userInput="firstname" selector="{{AdminExportMapping.sourceDataSystemTwo}}" stepKey="selectSystemValueTwo"/>
-        <fillField userInput="firstname_map" selector="{{AdminExportMapping.sourceDataExportTwo}}" stepKey="fillIExportValueTwo"/>
+        <click selector="{{AdminExportMappingSection.addMapButton}}" stepKey="clickAddMappingTwo"/>
+        <selectOption userInput="firstname" selector="{{AdminExportMappingSection.sourceDataSystemTwo}}" stepKey="selectSystemValueTwo"/>
+        <fillField userInput="firstname_map" selector="{{AdminExportMappingSection.sourceDataExportTwo}}" stepKey="fillIExportValueTwo"/>
 
-        <click selector="{{AdminExportMapping.addMapButton}}" stepKey="clickAddMappingThree"/>
-        <selectOption userInput="city" selector="{{AdminExportMapping.sourceDataSystemThree}}" stepKey="selectSystemValueThree"/>
-        <fillField userInput="city_map" selector="{{AdminExportMapping.sourceDataExportThree}}" stepKey="fillIExportValueThree"/>
-        <fillField userInput="New City" selector="{{AdminExportMapping.sourceDataMapReplaceThree}}" stepKey="fillIExportMapReplaceValueThree"/>
+        <click selector="{{AdminExportMappingSection.addMapButton}}" stepKey="clickAddMappingThree"/>
+        <selectOption userInput="city" selector="{{AdminExportMappingSection.sourceDataSystemThree}}" stepKey="selectSystemValueThree"/>
+        <fillField userInput="city_map" selector="{{AdminExportMappingSection.sourceDataExportThree}}" stepKey="fillIExportValueThree"/>
+        <fillField userInput="New City" selector="{{AdminExportMappingSection.sourceDataMapReplaceThree}}" stepKey="fillIExportMapReplaceValueThree"/>
 
         <!-- Save and run process -->
-        <click selector="{{AdminExportSaveAndRun.saveAndRun}}" stepKey="clickSaveAndRun"/>
+        <click selector="{{AdminExportSaveAndRunSection.saveAndRun}}" stepKey="clickSaveAndRun"/>
         <waitForPageLoad stepKey="waitForSaveAndRunPageOpened"/>
-        <click selector="{{AdminExportSaveAndRun.runButton}}" stepKey="clickRun"/>
+        <click selector="{{AdminExportSaveAndRunSection.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Export results -->
-        <waitForText userInput="Entity customer_address" selector="{{AdminExportSaveAndRun.exportResult}}" stepKey="waitForExportEntity"/>
-        <actionGroup ref="AdminExportConsoleResultActionGroup" stepKey="checkExportResult">
-            <argument name="consoleExportResult" />
-        </actionGroup>
+        <waitForText userInput="Entity customer_address" selector="{{AdminExportSaveAndRunSection.exportResult}}" stepKey="waitForExportEntity"/>
+        <actionGroup ref="AdminExportConsoleResultActionGroup" stepKey="checkExportResult"/>
+
+        <!-- Close importexport console -->
+        <click selector="{{AdminExportSaveAndRunSection.importCloseButton}}" stepKey="closeRunConsole" />
+        <waitForPageLoad stepKey="waitForConsoleClosed" /> 
+        
     </test>
 </tests>

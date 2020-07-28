@@ -21,19 +21,14 @@
             <group value="improveImportExportOrders"/>
         </annotations>
         <before>
-            <amOnPage url="admin" stepKey="openAdminPanelPage" />
-            <fillField selector="#username" userInput="admin" stepKey="fillLoginField" />
-            <fillField selector="#login" userInput="magento2" stepKey="fillPasswordField" />
-            <click selector="#login-form .action-login" stepKey="clickLoginButton" />
+            <actionGroup ref="AdminLogInActionGroup" stepKey="logInAdminPanel"/>
         </before>
         <after>
-
+            <actionGroup ref="AdminLogOutActionGroup" stepKey="logOutAdminPanel"/>
         </after>
 
         <!-- Go to Import page and click "Add Job" button -->
-        <actionGroup ref="AdminImproveImportActionGroup" stepKey="createImportJob">
-            <argument name="importProcess" />
-        </actionGroup>
+        <actionGroup ref="AdminImproveImportActionGroup" stepKey="createImportJob"/>
 
         <!-- Specify general section -->
         <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive" after=""/>
@@ -52,27 +47,23 @@
         <selectOption userInput="csv" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
         <selectOption userInput="ftp" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
         <fillField selector="{{AdminImportSourceSection.ftpFilePath}}" userInput="/files/orders.csv" stepKey="fillFtpFilePath"/>
-        <actionGroup ref="AdminImportFtpSourceData" stepKey="fillFtpData">
-            <argument name="ftpData" />
-        </actionGroup>
+        <actionGroup ref="AdminImportFtpSourceActionGroup" stepKey="fillFtpData"/>
 
         <!-- Validate Import file -->
         <click selector="{{AdminImportValidateSection.validateButton}}" stepKey="clickValidateImportFile"/>
         <waitForText userInput="File validated successfully." selector="{{AdminImportValidateSection.validateResult}}" stepKey="waitValidateText"/>
 
         <!-- Save and run process -->
-        <click selector="{{AdminImportSaveAndRun.saveAndRun}}" stepKey="clickSaveAndRun"/>
+        <click selector="{{AdminImportSaveAndRunSection.saveAndRun}}" stepKey="clickSaveAndRun"/>
         <waitForPageLoad stepKey="waitForSaveAndRunPageOpened"/>
-        <click selector="{{AdminImportSaveAndRun.runButton}}" stepKey="clickRun"/>
+        <click selector="{{AdminImportSaveAndRunSection.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Import results -->
-        <waitForText userInput="Entity order" selector="{{AdminImportSaveAndRun.importResult}}" stepKey="waitForImportEntity"/>
-        <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult">
-            <argument name="consoleImportResult" />
-        </actionGroup>
+        <waitForText userInput="Entity order" selector="{{AdminImportSaveAndRunSection.importResult}}" stepKey="waitForImportEntity"/>
+        <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult"/>
 
         <!-- Check that Orders were deleted -->
-        <click selector="{{AdminProductGridSection.importCloseButton}}" stepKey="closeRunConsole" />
+        <click selector="{{AdminImportSaveAndRunSection.importCloseButton}}" stepKey="closeRunConsole" />
         <waitForPageLoad stepKey="waitForConsoleClosed" />
         <waitForPageLoad stepKey="waitForConsoleClosed2" />
         <click selector="{{AdminOrdersGridSection.salesMenuButton}}" stepKey="clickOnSalesButton" />
@@ -80,6 +71,6 @@
         <dontSee selector="{{AdminOrdersGridSection.ordersPage}}" userInput="1444444444" stepKey="dontSeeFourthOrder"/>
         <dontSee selector="{{AdminOrdersGridSection.ordersPage}}" userInput="1333333333" stepKey="dontSeeThirthOrder"/>
         <dontSee selector="{{AdminOrdersGridSection.ordersPage}}" userInput="1222222222" stepKey="dontSeeSecondOrder"/>
-        
+             
     </test>
 </tests>

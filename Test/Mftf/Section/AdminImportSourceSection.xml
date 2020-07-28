@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminImportSourceSection">
+        <element name="typeFile" type="select" selector=".type_file select" timeout="200" />
+        <element name="importSource" type="select" selector=".import_source select"  timeout="200"/>
+        <!--ftp file path-->
+        <element name="ftpFilePath" type="input" selector=".ftp_file_path input"  timeout="200"/>
+        <element name="ftpHost" type="input" selector=".ftp_host input" timeout="200" />
+        <element name="ftpPort" type="input" selector=".ftp_port input"  timeout="200"/>
+        <element name="ftpUser" type="input" selector=".ftp_user input"  timeout="200"/>
+        <element name="ftpPassword" type="input" selector=".ftp_password input"  timeout="200"/>
+        <!--sftp file path-->
+        <element name="sftpFilePath" type="input" selector=".sftp_file_path input"  timeout="200"/>
+        <element name="sftpHost" type="input" selector=".sftp_host input" timeout="200" />
+        <element name="sftpPort" type="input" selector=".sftp_port input"  timeout="200"/>
+        <element name="sftpUser" type="input" selector=".sftp_username input"  timeout="200"/>
+        <element name="sftpPassword" type="input" selector=".sftp_password input"  timeout="200"/>
+        <!-- url file path-->
+        <element name="urlPass" type="input" selector=".url_file_path input" timeout="200" />
+        <!-- googlesheet path -->
+        <element name="googlesheetPath" type="input" selector=".google_file_path input" timeout="200" />
+        <!-- file path -->
+        <element name="filePath" type="input" selector=".file_file_path input" timeout="200"/>
+        <!-- dropbox path -->
+        <element name="dropboxPath" type="input" selector=".dropbox_file_path input" timeout="200"/>
+        <element name="dropboxAccessToken" type="input" selector=".dropbox_access_token input" timeout="200"/>
+    </section>
+ 
+</sections>

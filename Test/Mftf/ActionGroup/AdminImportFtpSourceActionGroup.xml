@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <actionGroup name="AdminImportFtpSourceActionGroup">
+        <annotations>
+            <description>Input ftp data</description>
+        </annotations>
+        
+        <fillField selector="{{AdminImportSourceSection.ftpHost}}" userInput="{{AdminFtpSourceData.host}}" stepKey="fillFtpHost"/>
+        <fillField selector="{{AdminImportSourceSection.ftpPort}}" userInput="{{AdminFtpSourceData.port}}" stepKey="fillFtpPort"/>
+        <fillField selector="{{AdminImportSourceSection.ftpUser}}" userInput="{{AdminFtpSourceData.user}}" stepKey="fillFtpUser"/>
+        <fillField selector="{{AdminImportSourceSection.ftpPassword}}" userInput="{{AdminFtpSourceData.password}}" stepKey="fillFtpPassword"/>
+    </actionGroup>
+
+</actionGroups>

@@ -21,19 +21,14 @@
             <group value="improveImportExportOrders"/>
         </annotations>
         <before>
-        <amOnPage url="admin" stepKey="openAdminPanelPage" />
-            <fillField selector="#username" userInput="admin" stepKey="fillLoginField" />
-            <fillField selector="#login" userInput="magento2" stepKey="fillPasswordField" />
-            <click selector="#login-form .action-login" stepKey="clickLoginButton" />
+            <actionGroup ref="AdminLogInActionGroup" stepKey="logInAdminPanel"/>
         </before>
         <after>
-        
+            <actionGroup ref="AdminLogOutActionGroup" stepKey="logOutAdminPanel"/>
         </after>
 
         <!-- Go to Export page and click "Add Job" button-->
-        <actionGroup ref="AdminImproveExportActionGroup" stepKey="createExportPage">
-            <argument name="exportProcess" />
-        </actionGroup>
+        <actionGroup ref="AdminImproveExportActionGroup" stepKey="createExportPage"/>
 
         <!-- Specify general section -->
         <click selector="{{AdminExportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive"/>
@@ -53,9 +48,7 @@
         <!-- specify Export Source section -->
         <selectOption userInput="ftp" selector="{{AdminExportSourceSection.exportSource}}" stepKey="selectSource"/>
         <fillField selector="{{AdminExportSourceSection.ftpFilePath}}" userInput="/files/import_add_update_sample_data.csv"  stepKey="fillFtpFilePath"/>
-        <actionGroup ref="AdminExportSourceDataActionGroup" stepKey="fillFtpData">
-            <argument name="ftpData" />
-        </actionGroup>
+        <actionGroup ref="AdminExportSourceDataActionGroup" stepKey="fillFtpData"/>
 
         <!-- Check ftp connection -->
         <click selector="{{AdminExportValidateSection.validateButton}}" stepKey="clickValidateFtp"/>
@@ -68,9 +61,11 @@
 
         <!-- Check Export results -->
         <waitForText userInput="Entity order" selector="{{AdminExportSaveAndRunSection.exportResult}}" stepKey="waitForExportEntity"/>
-        <actionGroup ref="AdminExportConsoleResultActionGroup" stepKey="checkExportResult">
-            <argument name="consoleExportResult" />
-        </actionGroup>
+        <actionGroup ref="AdminExportConsoleResultActionGroup" stepKey="checkExportResult"/>
 
+        <!-- Close importexport console -->
+        <click selector="{{AdminExportSaveAndRunSection.importCloseButton}}" stepKey="closeRunConsole" />
+        <waitForPageLoad stepKey="waitForConsoleClosed" />
+        
     </test>
 </tests>

@@ -29,5 +29,6 @@
         <element name="advancedPricingQtyTwo" type="text" selector="//*[contains(text(), '10')]/../.." timeout="100" />
         <element name="advancedPricingPriceOne" type="text" selector="//*[contains(text(), '63')]/../.." timeout="100" />
         <element name="advancedPricingPriceTwo" type="text" selector="//*[contains(text(), '58')]/../.." timeout="100" />
+        <element name="advancedPricingGridCloseButton" type="button" selector=".product_form_product_form_advanced_pricing_modal button" timeout="100" />
     </section>
 </sections>

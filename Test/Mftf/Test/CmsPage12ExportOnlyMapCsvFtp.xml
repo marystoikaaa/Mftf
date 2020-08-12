@@ -7,20 +7,20 @@
 -->
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="Attribute05ExportFilterCsvFtp">
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="CmsPage12ExportOnlyMapCsvFtp">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveExport"/>
-            <stories value="Export Filter Attribute"/>
-            <title value="Export Filter Attribute Csv Ftp"/>
-            <description value="Export Attribute successful, Attribute're were exported"/>
+            <stories value="CmsPage Export Only Map Csv Ftp"/>
+            <title value="CmsPage Export Only Map Csv Ftp"/>
+            <description value="Export CmsPage successful, CmsPage're were exported"/>
             <severity value="CRITICAL"/>
             <group value="improveImport"/>
             <group value="improveImportExport"/>
-            <group value="improveImportExportAttribute"/>
+            <group value="improveImportExportCmsPage"/>
         </annotations>
-       <before>
+        <before>
             <actionGroup ref="AdminLogInActionGroup" stepKey="logInAdminPanel"/>
         </before>
         <after>
@@ -32,10 +32,10 @@
 
         <!-- Specify general section -->
         <click selector="{{AdminExportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive"/>
-        <fillField selector="{{AdminExportGeneralSection.generalTitle}}" userInput="Attribute - Export - filter - csv - ftp " stepKey="fillGeneralTitle"/>
-    
+        <fillField selector="{{AdminExportGeneralSection.generalTitle}}" userInput="CmsPage - Export - only - map - csv - ftp " stepKey="fillGeneralTitle"/>
+
         <!-- Specify Export Settings section -->
-        <selectOption userInput="attribute" selector="{{AdminExportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+        <selectOption userInput="cms_page" selector="{{AdminExportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
 
         <!-- Specify Export Behavior section -->
         <selectOption userInput="csv" selector="{{AdminExportBehaviorSection.behaviorBehavior}}" stepKey="selectFileType"/>
@@ -49,18 +49,28 @@
         <click selector="{{AdminExportValidateSection.validateButton}}" stepKey="clickValidateFtp"/>
         <waitForText userInput="Success! Your connection is ready!" selector="{{AdminExportValidateSection.validateResult}}" stepKey="seeValidateText"/>
 
-        <!-- Filters -->
-        <click selector="{{AdminExportFilterSection.addFilterButton}}" stepKey="clickAddFilterMap"/>
-        <selectOption userInput="attribute_code" selector="{{AdminExportFilterSection.systemValueSelect}}" stepKey="chooseDefaultValue"/>
-        <fillField userInput="testing" selector="{{AdminExportFilterSection.exportValueInput}}" stepKey="fillFilterValue"/>
+        <!--Mapping-->
+        <click selector="{{AdminExportMappingSection.mapContainer}}" stepKey="enableOnlyMap"/>
+        <click selector="{{AdminExportMappingSection.addMapButton}}" stepKey="clickAddMapping"/>
+        <selectOption userInput="page_id" selector="{{AdminExportMappingSection.sourceDataSystemOne}}" stepKey="selectSystemValueOne"/>
+        <fillField userInput="page_id_map" selector="{{AdminExportMappingSection.sourceDataExportOne}}" stepKey="fillIExportValueOne"/>
 
-        <!-- Save and run process --> 
+        <click selector="{{AdminExportMappingSection.addMapButton}}" stepKey="clickAddMappingTwo"/>
+        <selectOption userInput="title" selector="{{AdminExportMappingSection.sourceDataSystemTwo}}" stepKey="selectSystemValueTwo"/>
+        <fillField userInput="title_map" selector="{{AdminExportMappingSection.sourceDataExportTwo}}" stepKey="fillIExportValueTwo"/>
+
+        <click selector="{{AdminExportMappingSection.addMapButton}}" stepKey="clickAddMappingThree"/>
+        <selectOption userInput="content" selector="{{AdminExportMappingSection.sourceDataSystemThree}}" stepKey="selectSystemValueThree"/>
+        <fillField userInput="content_map" selector="{{AdminExportMappingSection.sourceDataExportThree}}" stepKey="fillIExportValueThree"/>
+        <fillField userInput="content map" selector="{{AdminExportMappingSection.sourceDataMapReplaceThree}}" stepKey="fillIExportMapReplaceValueThree"/>
+
+        <!-- Save and run process -->
         <click selector="{{AdminExportSaveAndRunSection.saveAndRun}}" stepKey="clickSaveAndRun"/>
         <waitForPageLoad stepKey="waitForSaveAndRunPageOpened"/>
         <click selector="{{AdminExportSaveAndRunSection.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Export results -->
-        <waitForText userInput="Entity attribute" selector="{{AdminExportSaveAndRunSection.exportResult}}" stepKey="waitForExportEntity"/>
+        <waitForText userInput="Entity cms_page" selector="{{AdminExportSaveAndRunSection.exportResult}}" stepKey="waitForExportEntity"/>
         <actionGroup ref="AdminExportConsoleResultActionGroup" stepKey="checkExportResult"/>
 
         <!-- Close importexport console -->

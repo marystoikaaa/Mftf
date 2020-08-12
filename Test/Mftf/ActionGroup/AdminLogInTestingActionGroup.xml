@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <actionGroup name="AdminLogInTestingActionGroup">
+
+        <annotations>
+            <description>Log in Admin Panel</description>
+        </annotations>
+
+        <amOnUrl url="{{AdminLoginData.instanceUrl}}" stepKey="openAdminPanelPage" />
+        <fillField selector="{{AdminPanelSection.userName}}" userInput="{{AdminLoginData.userNameTesting}}" stepKey="fillLoginField" />
+        <fillField selector="{{AdminPanelSection.password}}" userInput="{{AdminLoginData.userPasswordTesting}}" stepKey="fillPasswordField" />
+        <click selector="{{AdminPanelSection.logInButton}}" stepKey="clickLoginButton" />
+
+    </actionGroup>
+
+</actionGroups>

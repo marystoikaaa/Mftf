@@ -8,17 +8,17 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="AdvancedPricing02ImportAddUpdateXmlFile">
+    <test name="CmsPage02ImportAddXmlFile">
         <annotations>
             <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
             <features value="improveImport"/>
-            <stories value="Import AdvancedPricing"/>
-            <title value="Import AdvancedPricing Successful"/>
-            <description value="Import AdvancedPricing successful, AdvancedPricing're were imported"/>
+            <stories value="CmsPage Import Add Xml File"/>
+            <title value="CmsPage Import Add Xml File"/>
+            <description value="Import CmsPage successful, CmsPage're were imported"/>
             <severity value="CRITICAL"/>
             <group value="improveImport"/>
             <group value="improveImportExport"/>
-            <group value="improveImportExportAdvancedPricing"/>
+            <group value="improveImportExportCmsPage"/>
         </annotations>
         <before>
             <actionGroup ref="AdminLogInActionGroup" stepKey="logInAdminPanel"/>
@@ -32,13 +32,13 @@
 
         <!-- Specify general section -->
         <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive"/>
-        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="AdvancedPricing Import - add update - xml - file" stepKey="fillGeneralTitle"/>
-        <click selector="{{AdminImportGeneralSection.generalGenerateUrl}}" stepKey="enableUrlIfDuplicate"/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="CmsPage Import - add - xml - file" stepKey="fillGeneralTitle"/>
+         <click selector="{{AdminImportGeneralSection.generalGenerateUrl}}" stepKey="enableUrlIfDuplicate"/>
         <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
 
         <!-- Specify Import Settings section -->
         <click selector="{{AdminImportSettingsSection.fieldSettings}}" stepKey="openFieldSettings"/>
-        <selectOption userInput="advanced_pricing" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+        <selectOption userInput="cms_page" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
 
         <!-- Specify Import Behavior section -->
         <selectOption userInput="append" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
@@ -46,7 +46,7 @@
         <!-- Specify Import Source section -->
         <selectOption userInput="xml" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
         <selectOption userInput="file" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
-        <fillField selector="{{AdminImportSourceSection.filePath}}" userInput="pub/media/importexport/test/advanced_pricing.xml"  stepKey="fillGoogleFilePath"/>
+        <fillField selector="{{AdminImportSourceSection.filePath}}" userInput="pub/media/importexport/test/cms_pages.xml"  stepKey="fillGoogleFilePath"/>
 
         <!-- Validate Import file -->
         <click selector="{{AdminImportValidateSection.validateButton}}" stepKey="clickValidateImportFile"/>
@@ -58,22 +58,16 @@
         <click selector="{{AdminImportSaveAndRunSection.runButton}}" stepKey="clickRun"/>
 
         <!-- Check Import results -->
-        <waitForText userInput="Entity advanced_pricing" selector="{{AdminImportSaveAndRunSection.importResult}}" stepKey="waitForImportEntity"/>
+        <waitForText userInput="Entity cms_page" selector="{{AdminImportSaveAndRunSection.importResult}}" stepKey="waitForImportEntity"/>
         <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult"/>
 
-        <!-- Check that AdvancedPricing were added -->
+        <!-- Check that CmsPage were added -->
         <click selector="{{AdminImportSaveAndRunSection.importCloseButton}}" stepKey="closeRunConsole" />
-        <waitForPageLoad stepKey="waitForConsoleClosed" />
-        <click selector="{{AdminProductGridSection.magentoCatalogButton}}" stepKey="clickCatalogMenu" />
-        <click selector="{{AdminProductGridSection.productGridButton}}" stepKey="openCatalogProductsPage" />
-        <waitForPageLoad stepKey="waitForCatalogPageOpened" />
-        <click selector="{{AdminProductGridSection.productSimpleTstClick}}" stepKey="goToConfigProduct" />
-        <waitForPageLoad stepKey="waitForProductPageOpened" />
-        <click selector="{{AdminProductGridSection.advancedPricingButton}}" stepKey="goToAdvancedPricing" />
-        <waitForPageLoad stepKey="waitForAdvancedPricingPageOpened" />
-        <seeElement selector="{{AdminProductGridSection.advancedPricingQtyOne}}" stepKey="seeThatQtyProductHasValueFive"/>
-        <seeElement selector="{{AdminProductGridSection.advancedPricingQtyTwo}}" stepKey="seeThatQtyProductHasValueTen"/>
-        <seeElement selector="{{AdminProductGridSection.advancedPricingPriceOne}}" stepKey="seeThatPriceProductHasValueSixtyThree"/>
-        <click selector="{{AdminProductGridSection.advancedPricingGridCloseButton}}" stepKey="closeAdvancedPricingGrid"/>
+        <waitForPageLoad stepKey="waitForConsoleClosed" />     
+        <click selector="{{AdminCmsPageGridSection.magentoContentButton}}" stepKey="clickContentMenuButton"/>
+        <click selector="{{AdminCmsPageGridSection.cmsPageGridButton}}" stepKey="goToCmsPageGrid"/> 
+        <seeElement selector="{{AdminCmsPageGridSection.cmsPageFirst}}" stepKey="seeCmsPageNumberOne"/>
+        <seeElement selector="{{AdminCmsPageGridSection.cmsPageSecond}}" stepKey="seeCmsPageNumberSecond"/>
+        
     </test>
 </tests>

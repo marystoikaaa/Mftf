@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminCmsBlockGridSection">
+        <element name="magentoContentButton" type="button" selector="#menu-magento-backend-content" timeout="100"/>
+        <element name="cmsBlockGridButton" type="button" selector=".item-cms-block" timeout="100" />
+        <element name="cmsBlocksNumberOfItems" type="text" selector=".admin__control-support-text" timeout="100" />
+        <element name="cmsBlockFirst" type="text" selector="//*[contains(text(), 'Custom static block #1')]/../.." timeout="100" />
+        <element name="cmsBlockSecond" type="text" selector="//*[contains(text(), 'Custom static block #2')]/../.." timeout="100" />
+        <element name="cmsBlockThird" type="text" selector="//*[contains(text(), 'Custom static block #3')]/../.." timeout="100" />
+    </section>
+</sections>

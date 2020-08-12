@@ -11,6 +11,9 @@
     <entity name="AdminLoginData">
         <data key="userName">***</data>
         <data key="userPassword">***</data>
+        <data key="instanceUrl">***</data>
+        <data key="userNameTesting">***</data>
+        <data key="userPasswordTesting">***</data>
     </entity>
    
 </entities>

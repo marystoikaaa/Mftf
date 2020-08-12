@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminCmsPageGridSection">
+        <element name="magentoContentButton" type="button" selector="#menu-magento-backend-content" timeout="100"/>
+        <element name="cmsPageGridButton" type="button" selector=".item-cms-page" timeout="100" />
+        <element name="cmsPagesNumberOfItems" type="text" selector=".admin__control-support-text" timeout="100" />
+        <element name="cmsPageFirst" type="text" selector="//*[contains(text(), 'sample_cms_page_1')]/../.." timeout="100" />
+        <element name="cmsPageSecond" type="text" selector="//*[contains(text(), 'sample_cms_page_2')]/../.." timeout="100" />
+    </section>
+</sections>

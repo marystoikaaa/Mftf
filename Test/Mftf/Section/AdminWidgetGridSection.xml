@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminWidgetGridSection">
+        <element name="magentoContentButton" type="button" selector="#menu-magento-backend-content" timeout="100"/>
+        <element name="widgetGridButton" type="button" selector=".item-cms-widget-instance" timeout="100" />
+        <element name="widgetsNumberOfItems" type="text" selector="#widgetInstanceGrid-total-count" timeout="100" />
+        <element name="widgetFirst" type="text" selector="//*[contains(text(), 'Contact us info')]/../.." timeout="100" />
+        <element name="widgetSecond" type="text" selector="//*[contains(text(), 'Footer Links')]/../.." timeout="100" />
+        <element name="widgetThird" type="text" selector="//*[contains(text(), 'Sale Left Menu')]/../.." timeout="100" />
+    </section>
+</sections>

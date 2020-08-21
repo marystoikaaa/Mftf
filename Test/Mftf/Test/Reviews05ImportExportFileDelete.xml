@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="Reviews05ImportExportFileDelete">
+        <annotations>
+            <!--   Comment in Annotations for DevDocs Test are not affecting test generation  -->
+            <features value="improveImport"/>
+            <stories value="Reviews Import Export File Delete"/>
+            <title value="Reviews Import Export File Delete"/>
+            <description value="Import Reviews successful, Reviews're were deleted"/>
+            <severity value="CRITICAL"/>
+            <group value="improveImport"/>
+            <group value="improveImportExport"/>
+            <group value="improveImportExportReviews"/>
+        </annotations>
+        <before>
+            <actionGroup ref="AdminLogInActionGroup" stepKey="logInAdminPanel"/>
+        </before>
+        <after>
+            <actionGroup ref="AdminLogOutActionGroup" stepKey="logOutAdminPanel"/>
+        </after>
+
+        <!-- Go to Import page and click "Add Job" button -->
+        <actionGroup ref="AdminImproveImportActionGroup" stepKey="createImportJob"/>
+
+        <!-- Specify general section -->
+        <click selector="{{AdminImportGeneralSection.generalIsActive}}" stepKey="clickGeneralIsActive" after=""/>
+        <fillField selector="{{AdminImportGeneralSection.generalTitle}}" userInput="Reviews Import Export - delete - file" stepKey="fillGeneralTitle"/>
+        <click selector="{{AdminImportGeneralSection.generalGenerateUrl}}" stepKey="enableUrlIfDuplicate"/>
+        <click selector="{{AdminImportGeneralSection.generalReindex}}" stepKey="enableReindex"/>
+
+        <!-- Specify Import Settings section -->
+        <click selector="{{AdminImportSettingsSection.fieldSettings}}" stepKey="openFieldSettings"/>
+        <selectOption userInput="review" selector="{{AdminImportSettingsSection.settingsEntity}}" stepKey="selectSettingsEntity"/>
+
+        <!-- Specify Import Behavior section -->
+        <selectOption userInput="delete" selector="{{AdminImportBehaviorSection.behaviorBehavior}}" stepKey="selectBehavior"/>
+
+        <!-- Specify Import Source section -->
+        <selectOption userInput="csv" selector="{{AdminImportSourceSection.typeFile}}" stepKey="selectFileType"/>
+        <selectOption userInput="ftp" selector="{{AdminImportSourceSection.importSource}}" stepKey="selectSource"/>
+        <fillField selector="{{AdminImportSourceSection.ftpFilePath}}" userInput="/files/import_add_update_sample_data.csv" stepKey="fillFtpFilePath"/>
+        <actionGroup ref="AdminImportFtpSourceActionGroup" stepKey="fillFtpData"/>
+
+        <!-- Validate Import file -->
+        <click selector="{{AdminImportValidateSection.validateButton}}" stepKey="clickValidateImportFile"/>
+        <waitForText userInput="File validated successfully." selector="{{AdminImportValidateSection.validateResult}}" stepKey="waitValidateText"/>
+
+        <!-- Save and run process -->
+        <click selector="{{AdminImportSaveAndRunSection.saveAndRun}}" stepKey="clickSaveAndRun"/>
+        <waitForPageLoad stepKey="waitForSaveAndRunPageOpened"/>
+        <click selector="{{AdminImportSaveAndRunSection.runButton}}" stepKey="clickRun"/>
+
+        <!-- Check Import results -->
+        <waitForText userInput="Entity review" selector="{{AdminImportSaveAndRunSection.importResult}}" stepKey="waitForImportEntity"/>
+        <actionGroup ref="AdminImportConsoleResultActionGroup" stepKey="checkConsoleResult"/>
+
+        <click selector="{{AdminImportSaveAndRunSection.importCloseButton}}" stepKey="closeRunConsole" />
+        <waitForPageLoad stepKey="waitForConsoleClosed" />
+        <click selector="{{AdminReviewsGridSection.magentoMarketingButton}}" stepKey="clickOnMarketingButton" />
+        <click selector="{{AdminReviewsGridSection.reviewsGridButton}}" stepKey="goToReviewsPage" />
+        <see userInput="0" selector="{{AdminReviewsGridSection.reviewsNumberOfItems}}" stepKey="seeNumberOfReviewsItems"/>
+
+    </test>
+</tests>

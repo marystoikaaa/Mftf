@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminSearchTermsGridSection">
+        <element name="magentoMarketingButton" type="button" selector="#menu-magento-backend-marketing" timeout="100"/>
+        <element name="searchTermsGridButton" type="button" selector=".item-search-terms" timeout="100" />
+        <element name="searchTermsNumberOfItems" type="text" selector="#search_term_grid-total-count" timeout="100" />
+        <element name="searchTermsQuery" type="text" selector="tbody .col-search_query" timeout="100" />
+        
+    </section>
+</sections>

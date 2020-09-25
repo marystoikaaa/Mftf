@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminSearchSynonymsGridSection">
+        <element name="magentoMarketingButton" type="button" selector="#menu-magento-backend-marketing" timeout="100"/>
+        <element name="searchSynonymsGridButton" type="button" selector=".item-search-synonyms" timeout="100" />
+        <element name="searchSynonymsNumberOfItems" type="text" selector=".admin__control-support-text" timeout="100" />
+        <element name="searchSynonymsFirstGroup" type="text" selector="//*[contains(text(), 'firebear,studio,fire,bear')]/../.." timeout="100" />
+        <element name="searchSynonymsSecondGroup" type="text" selector="//*[contains(text(), 'import,export,magento2')]/../.." timeout="100" />
+        
+    </section>
+</sections>
